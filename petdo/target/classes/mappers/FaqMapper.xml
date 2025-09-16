@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FaqDAO">
+	<select id="getFaqBoardList" parameterType="com.javaclass.domain.FaqVO" resultType="com.javaclass.domain.FaqVO">SELECT * FROM faq_board</select>
+	<insert id="insertFaqBoard" parameterType="com.javaclass.domain.FaqVO">
+		INSERT INTO faq_board(faq_seq,faq_title,faq_writer
+		<if test="faq_name!=null or faq_mainName!=null">,faq_name,faq_realname,faq_fsize,faq_mainName,faq_mainRealName,faq_mainFsize</if>
+		,faq_date,faq_tag1,faq_tag2,faq_tag3)
+		VALUES(nextval('faq_board_seq'),#{faq_title},#{faq_writer}
+		<if test="faq_name!=null or faq_mainName!=null">,#{faq_name},#{faq_realname},#{faq_fsize},#{faq_mainName},#{faq_mainRealName},#{faq_mainFsize}</if>
+		,CURRENT_TIMESTAMP,#{faq_tag1},#{faq_tag2},#{faq_tag3})
+	</insert>
+	<update id="updateFaqBoard" parameterType="com.javaclass.domain.FaqVO">
+		UPDATE faq_board SET faq_title=#{faq_title},faq_writer=#{faq_writer},faq_date=CURRENT_TIMESTAMP
+		<if test="faq_name!=null or faq_mainName!=null">,faq_name=#{faq_name},faq_realname=#{faq_realname},faq_fsize=#{faq_fsize},faq_mainName=#{faq_mainName},faq_mainRealName=#{faq_mainRealName},faq_mainFsize=#{faq_mainFsize}</if>
+		,faq_tag1=#{faq_tag1},faq_tag2=#{faq_tag2},faq_tag3=#{faq_tag3} WHERE faq_seq=#{faq_seq}
+	</update>
+	<delete id="deleteFaqBoard">DELETE FROM faq_board WHERE faq_seq=#{faq_seq}</delete>
+	<select id="selectFaqBoard" parameterType="com.javaclass.domain.FaqVO" resultType="com.javaclass.domain.FaqVO">
+		SELECT faq_seq,faq_title,faq_writer,faq_name,faq_realname,faq_fsize,faq_mainName,faq_mainRealName,faq_mainFsize,faq_date,faq_tag1,faq_tag2,faq_tag3 FROM faq_board WHERE faq_seq=#{faq_seq}
+	</select>
+	<select id="selectAllFaq" resultType="com.javaclass.domain.FaqVO">
+		SELECT faq_seq,faq_title,faq_writer,faq_name,faq_realname,faq_fsize,faq_mainName,faq_mainRealName,faq_mainFsize,faq_date,faq_tag1,faq_tag2,faq_tag3 FROM faq_board ORDER BY faq_seq DESC
+	</select>
+</mapper>

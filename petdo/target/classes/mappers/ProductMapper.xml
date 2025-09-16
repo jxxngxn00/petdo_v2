@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductDAO">
+
+<!-- ****** 메인 : 상품추천 ****** -->
+<select id="topProduct" parameterType="ProductVO" resultType="ProductVO">
+    SELECT product_number, product_name, product_hits, product_price, origin_file_name, stored_file_name, file_size
+    FROM product
+    ORDER BY product_hits DESC
+    LIMIT 3
+</select>
+
+<select id="newProduct" parameterType="ProductVO" resultType="ProductVO">
+    SELECT product_number, product_name, product_price, origin_file_name, stored_file_name, file_size
+    FROM product
+    ORDER BY product_date DESC
+    LIMIT 12
+</select>
+
+<select id="getCategoryList" parameterType="ProductVO" resultType="ProductVO">  
+<![CDATA[
+SELECT *
+FROM product
+WHERE category_code = CAST(#{category_code} AS INTEGER)
+]]>
+</select>
+
+<select id="getProductList" parameterType="ProductVO" resultType="ProductVO">  
+<![CDATA[
+SELECT *
+FROM product
+ORDER BY product_number DESC
+LIMIT #{amount} OFFSET (#{pageNum}-1) * #{amount}
+]]>
+</select>
+
+<select id="getTotal" resultType="int">
+    SELECT COUNT(product_number) AS total FROM product
+</select>
+
+<select id="searchItems" parameterType="String" resultType="ProductVO">  
+<![CDATA[
+SELECT *
+FROM product
+WHERE product_name LIKE '%' || #{keyword} || '%'
+]]>
+</select>
+
+<select id="getProduct" parameterType="ProductVO" resultType="ProductVO">
+<![CDATA[
+SELECT *
+FROM product
+WHERE product_number = #{product_number}
+]]>
+</select>
+
+<update id="hitsplus" parameterType="ProductVO">
+    UPDATE product 
+    SET product_hits = product_hits + 1
+    WHERE product_number = #{product_number}
+</update>
+
+<insert id="insertReview" parameterType="ReviewVO">
+INSERT INTO reviews_board 
+(review_seq, review_writer, review_content, review_date, product_number
+<if test="review_name != null">
+    , review_name, review_realname, review_size
+</if>
+)
+VALUES (
+    nextval('review_seq'),
+    #{review_writer},
+    #{review_content},
+    CURRENT_TIMESTAMP,
+    #{product_number}
+<if test="review_name != null">
+    , #{review_name}, #{review_realname}, #{review_size}
+</if>
+)
+</insert>
+
+<select id="getReview" parameterType="Integer" resultType="ReviewVO">
+    SELECT review_seq, review_writer, review_content, review_name, review_realname, review_size
+    FROM reviews_board
+    WHERE product_number = #{product_number}
+</select>
+
+<update id="ordercount" parameterType="ProductVO">
+UPDATE product
+SET product_stock = product_stock - (
+    SELECT product_count
+    FROM order_detail
+    WHERE product_number = #{product_number} AND order_detail_status NOT IN ('환불','취소','교환')
+)
+WHERE product_number = #{product_number}
+</update>
+
+<select id="selectAllProduct" resultType="ProductVO">
+    SELECT product_number, product_name, product_stock, product_hits, product_date
+    FROM product
+    ORDER BY product_number
+</select>
+
+<delete id="deleteProduct">
+    DELETE FROM product
+    WHERE product_number = #{product_number}
+</delete>
+
+<insert id="insertProduct" parameterType="ProductVO">
+INSERT INTO product (
+    product_number, category_code, product_name, product_price,
+    product_stock, product_desc, product_date, product_hits
+    <if test="origin_file_name != null or main_file_name != null">
+        , origin_file_name, stored_file_name, file_size, main_file_name, stored_main_file_name, main_file_size
+    </if>
+)
+VALUES (
+    nextval('product_seq'), #{category_code}, #{product_name}, #{product_price},
+    #{product_stock}, #{product_desc}, CURRENT_TIMESTAMP, 0
+    <if test="origin_file_name != null or main_file_name != null">
+        , #{origin_file_name}, #{stored_file_name}, #{file_size}, #{main_file_name}, #{stored_main_file_name}, #{main_file_size}
+    </if>
+)
+</insert>
+
+<update id="updateProduct" parameterType="ProductVO">
+UPDATE product
+SET category_code = #{category_code},
+    product_name = #{product_name},
+    product_price = #{product_price},
+    product_stock = #{product_stock},
+    product_desc = #{product_desc}
+    <if test="origin_file_name != null or main_file_name != null">
+        , origin_file_name = #{origin_file_name},
+          stored_file_name = #{stored_file_name},
+          file_size = #{file_size},
+          main_file_name = #{main_file_name},
+          stored_main_file_name = #{stored_main_file_name},
+          main_file_size = #{main_file_size}
+    </if>
+WHERE product_number = #{product_number}
+</update>
+
+</mapper>

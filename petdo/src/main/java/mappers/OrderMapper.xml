@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderDAO">
+	<insert id="orderInsert" parameterType="OrderVO">
+		INSERT INTO order_detail(order_detail_number,product_number,product_name,product_count,product_price,user_id,order_date,order_detail_status,refund_check)
+		VALUES(nextval('order_detail_seq'),(SELECT product_number FROM product WHERE product_name LIKE '%'||#{product_name}||'%'),#{product_name},#{product_count},#{product_price},#{user_id},CURRENT_TIMESTAMP,'준비중',true)
+	</insert>
+	<delete id="deleteCart" parameterType="OrderVO">DELETE FROM cart WHERE user_id=#{user_id}</delete>
+	<select id="selectAllByUser" parameterType="String" resultType="OrderVO">
+		SELECT order_detail_number,product_name,order_detail_status FROM (SELECT o.user_id user_id,o.order_detail_number order_detail_number,p.product_name product_name,o.order_detail_status order_detail_status FROM order_detail o LEFT JOIN product p ON o.product_number=p.product_number) WHERE user_id=#{user_id}
+	</select>
+	<select id="selectByUser" parameterType="Integer" resultType="OrderVO">
+		SELECT order_detail_number,product_name,order_date,order_detail_status,user_name,product_price,refund_check FROM (SELECT o.refund_check refund_check,o.user_id user_id,p.product_name product_name,o.order_detail_number order_detail_number,o.order_date order_date,o.order_detail_status order_detail_status,ui.user_name user_name,o.product_price product_price FROM order_detail o LEFT JOIN product p ON o.product_number=p.product_number LEFT JOIN user_info ui ON o.user_id=ui.user_id) WHERE order_detail_number=#{order_detail_number}
+	</select>
+	<update id="updateOrder" parameterType="ReturnVO">
+		UPDATE order_detail SET
+		<choose>
+			<when test="status=='refund'">order_detail_status='환불',</when>
+			<when test="status=='exchange'">order_detail_status='교환',</when>
+		</choose>
+		refund_check=0 WHERE user_id=#{user_id} AND order_detail_number=#{order_detail_number}
+	</update>
+	<insert id="insertReturn" parameterType="ReturnVO">
+		INSERT INTO order_refund(refund_number,refund_reason,refund_reason_detail,user_id,order_detail_number) VALUES(nextval('refund_seq'),#{refund_reason},#{refund_reason_detail},#{user_id},#{order_detail_number})
+	</insert>
+	<insert id="insertExchange" parameterType="ExchangeVO">
+		INSERT INTO order_exchange(exchange_number,exchange_reason,exchange_reason_detail,user_id,order_detail_number) VALUES(nextval('exchange_seq'),#{exchange_reason},#{exchange_reason_detail},#{user_id},#{order_detail_number})
+	</insert>
+	<select id="rReason" parameterType="Integer" resultType="ReturnVO">SELECT * FROM order_refund WHERE order_detail_number=#{order_detail_number}</select>
+	<select id="eReason" parameterType="Integer" resultType="ExchangeVO">SELECT * FROM order_exchange WHERE order_detail_number=#{order_detail_number}</select>
+	<update id="confirm" parameterType="Integer">UPDATE order_detail SET order_detail_status='완료',refund_check=false WHERE order_detail_number=#{order_detail_number}</update>
+	<select id="selectAllByAdmin" resultType="OrderVO">
+		SELECT order_detail_number,order_date,product_count,user_id,product_name,product_price,order_detail_status FROM (SELECT o.order_detail_number order_detail_number,o.order_date order_date,o.product_count product_count,o.user_id user_id,p.product_name product_name,o.product_price product_price,o.order_detail_status order_detail_status FROM order_detail o LEFT JOIN product p ON o.product_number=p.product_number) ORDER BY order_date DESC
+	</select>
+	<update id="changeStatus" parameterType="Integer">UPDATE order_detail SET order_detail_status='배송중' WHERE order_detail_number=#{order_detail_number}</update>
+	<update id="accept" parameterType="Integer">UPDATE order_detail SET order_detail_status='승인' WHERE order_detail_number=#{order_detail_number}</update>
+	<update id="reject" parameterType="Integer">UPDATE order_detail SET order_detail_status='거절' WHERE order_detail_number=#{order_detail_number}</update>
+</mapper>
