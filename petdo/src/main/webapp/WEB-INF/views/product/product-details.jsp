@@ -237,7 +237,6 @@
 	<script src="<%=pjName%>/resources/js/bootstrap.min.js"></script>
 	<script src="<%=pjName%>/resources/js/jquery.prettyPhoto.js"></script>
 	<script src="<%=pjName%>/resources/js/main.js"></script>
-	<script src="<%=pjName%>/resources/js/product.js"></script>
 	<script type="text/javascript">
       $(function() {
       	//상품 검색 jQuery
