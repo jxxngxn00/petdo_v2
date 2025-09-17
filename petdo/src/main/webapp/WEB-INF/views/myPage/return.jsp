@@ -32,83 +32,9 @@
 </head><!--/head-->
 
 <body>
-		<header id="header"><!--header-->
-		
-		<div class="container">
-			<div class="header-middle"><!--header-middle-->
-				<a href="../main.do"><img src="<%=pjName%>/resources/images/home/logo.png" width="12%" height="auto"" id="petlogo" alt="" /></a>
-						<div class="col-sm-8">
-							<div class="shop-menu pull-right">
-							<!-- 로그아웃, 마이페이지, 장바구니, 관리자페이지(관리자일경우) 아이콘 -->
-							<ul class="nav navbar-nav" id="headerbar">
-								<li class="ment" style="margin-top: 12px;"><%=session.getAttribute("login")%>님
-									환영합니다.</li>
-								<li><a href="#" data-toggle="modal"
-									data-target="#logoutModalCenter"><i class="fa fa-sign-out"></i></a></li>
-								<li><a href="account.do?user_id=${sessionScope.login }"><i class="fa fa-user"></i></a></li>
-								<li><a href="../cart/cartList.do"><i
-										class="fa fa-shopping-cart"></i></a></li>
-								<c:if test="${'admin' eq sessionScope.login }">
-									<li><a href="../admin.do"><i class="fa fa-cogs"
-											aria-hidden="true"></i></a></li>
-								</c:if>
-							</ul>
-
-
-					</div>
-				</div>
-		</div>
-	</div><!--/header_top : 로그인 / 장바구니 등 4개 아이콘 : header-->
-
-	
-	<div class="header_middle"></div>
-	<div class="header-bottom"><!--header-bottom-->
-
-		<div class="container">
-			<div class="row">
-				<div id="sm-9" class="col-sm-9">
-					
-					
-					<div class="mainmenu pull-left ">
-						<ul class="nav navbar-nav collapse navbar-collapse" style="font-size: 0;">
-							
-							<li class="dropdown"><a href="../product/care-shop.do">케어<i class="fa fa-angle-down"></i></a>
-								<ul role="menu" class="sub-menu">
-									<li><a href="../product/care1-shop.do">목욕</a></li>
-									<li><a href="../product/care2-shop.do">미용</a></li> 
-								</ul>
-							</li> 
-							<li class="dropdown"><a href="../product/toilet-shop.do">배변/위생<i class="fa fa-angle-down"></i></a>
-								<ul role="menu" class="sub-menu">
-									<li><a href="../product/toilet1-shop.do">배변용품</a></li>
-									<li><a href="../product/toilet2-shop.do">위생용품</a></li>
-								</ul>
-							</li> 
-							<li class="dropdown"><a href="../product/food-shop.do">식품<i class="fa fa-angle-down"></i></a>
-								<ul role="menu" id="sub-menu-txt" class="sub-menu">
-									<li><a href="../product/food1-shop.do">간식</a></li>
-									<li><a href="../product/food2-shop.do">사료</a></li>
-									<li><a href="../product/food3-shop.do">영양제</a></li>
-								</ul>
-							</li>
-							<li><a href="../blog/notice.do" style="color: #FF9933;">NOTICE</a></li> 
-							<li><a href="../blog/faq.do" style="color: #FF9933;" >FAQ</a></li>
-							<li><a href="../blog/qna.do" style="color: #FF9933;" >Q&A</a></li>
-						</ul>
-					</div>
-						<!-- 검색창 -->
-						<div class="search_box pull-right">
-						<form action="../product/searchItems.do" id="searchFrm">
-							<input type="text" placeholder="검색" name="keyword"/> 
-							<a id="searchBtn" style="margin-left: 140px; margin-top: 9px; position: absolute;">
-							<i class="fa fa-search" aria-hidden="true"></i></a>
-						</form>
-						</div>
-						<div id="topHeader" class="appTopArea" style="top: 0px;"></div>
-						<!-- /검색창 -->
-				</div>
-			
-			</header>
+	<header id="header"><!--header-->
+		<jsp:include page="/WEB-INF/views/common/gnb.jsp" />
+	</header>
 	<section>
 		<div class="container">
 			<div class="row" style="margin:0px auto;">
@@ -188,32 +114,9 @@
 	</div>
 	<!-- /logout Modal -->
 	
-	<footer id="footer"><!--Footer-->
-		<div class="footer-widget">
-			<div class="container">
-				<div class="row" style="padding:3%;">     
-					<div class="col-sm-4"></div>
-					<div class="col-sm-4">
-					   <div class="contact-info">
-						  <h2 class="title text-center">Contact Info</h2>
-						  <address>
-							 <p>(주)펫두 </p>
-							<p>서울 금천구 가산디지털2로 101 3층 302호</p>
-							<p>서울특별시 금천구 가산동</p>
-							<p>Mobile: +82 10 1234 5678</p>
-							<p>Fax: 1234-5678</p>
-							<p>Email:petdo@shopper.com</p>
-						  </address>
-						  
-					   </div>
-					</div>             
-				 </div>  
-			</div>
-		</div>
-		
-	
-		
-	</footer><!--/Footer-->
+	<footer id="footer">
+        <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	</footer>
 	
 
   

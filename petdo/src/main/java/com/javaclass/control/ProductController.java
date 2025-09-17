@@ -65,12 +65,6 @@ public class ProductController {
 		return "product/product-details";
 	}
 
-	// 상품목록 페이지 부르기
-	@RequestMapping("/all-product-shop.do")
-	public String allProductShop() {
-		return "product/all-product-shop";
-	}
-	
 	// 상품 검색 결과 출력
 	@RequestMapping("/searchItems.do")
 	public String searchItems(String keyword, Model model) {

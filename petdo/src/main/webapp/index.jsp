@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <%
-	response.sendRedirect("loginOpen.do"); 
+    if (session.getAttribute("login") == null) {
+        response.sendRedirect("loginOpen.do");
+    } else {
+    	response.sendRedirect("main.do");
+    }
 %>
-

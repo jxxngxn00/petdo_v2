@@ -1,43 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>Home</title>
-<%
-	String pjName = "/petdo";
-%>
-
-<!-- CSS -->
-<link href="<%=pjName%>/resources/mCss/bootstrap.min.css"
-	rel="stylesheet">
-<link href="<%=pjName%>/resources/mCss/font-awesome.min.css"
-	rel="stylesheet">
-<link href="<%=pjName%>/resources/mCss/prettyPhoto.css" rel="stylesheet">
-<link href="<%=pjName%>/resources/mCss/price-range.css" rel="stylesheet">
-<link href="<%=pjName%>/resources/mCss/animate.css" rel="stylesheet">
-<link href="<%=pjName%>/resources/mCss/main.css" rel="stylesheet">
-<link href="<%=pjName%>/resources/mCss/responsive.css" rel="stylesheet">
-
-<!-- icon -->
-<link rel="shortcut icon"
-	href="<%=pjName%>/resources/images/ico/favicon.ico">
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="<%=pjName%>/resources/images/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="<%=pjName%>/resources/images/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="<%=pjName%>/resources/images/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
-	href="<%=pjName%>/resources/images/ico/apple-touch-icon-57-precomposed.png">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Home</title>
+	<%
+		String pjName = "/petdo";
+	%>
+	
+	<!-- CSS -->
+	<link href="<%=pjName%>/resources/mCss/bootstrap.min.css"
+		rel="stylesheet">
+	<link href="<%=pjName%>/resources/mCss/font-awesome.min.css"
+		rel="stylesheet">
+	<link href="<%=pjName%>/resources/mCss/prettyPhoto.css" rel="stylesheet">
+	<link href="<%=pjName%>/resources/mCss/price-range.css" rel="stylesheet">
+	<link href="<%=pjName%>/resources/mCss/animate.css" rel="stylesheet">
+	<link href="<%=pjName%>/resources/mCss/main.css" rel="stylesheet">
+	<link href="<%=pjName%>/resources/mCss/responsive.css" rel="stylesheet">
+	
+	<!-- icon -->
+	<link rel="shortcut icon"
+		href="<%=pjName%>/resources/images/ico/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144"
+		href="<%=pjName%>/resources/images/ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114"
+		href="<%=pjName%>/resources/images/ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72"
+		href="<%=pjName%>/resources/images/ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed"
+		href="<%=pjName%>/resources/images/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+	
 
 </head>
 <!--/head-->
@@ -45,102 +44,8 @@
 <body>
 	<header id="header">
 		<!--header-->
-
-		<div class="container">
-			<div class="header-middle">
-				<!--header-middle-->
-				
-				<!-- 로고 -->
-				<a href="main.do"><img
-					src="<%=pjName%>/resources/images/home/logo.png" width="12%"
-					height="auto" id="petlogo" style="margin-top: 10px;" alt="" /></a>
-					
-				<!-- 사용자 아이디 표시, 로그아웃, 마이페이지, 장바구니, 관리자 페이지(관리자일 경우) 아이콘 -->
-				<div class="col-sm-8">
-					<div class="shop-menu pull-right">
-						<ul class="nav navbar-nav" id="headerbar">
-							<li class="ment" style="margin-top: 12px;">${sessionScope.login}님
-								환영합니다.</li>
-							<li><a href="#" data-toggle="modal" data-target="#logoutModalCenter"><i class="fa fa-sign-out"></i></a></li>
-							<li><a href="myPage/account.do?user_id=${sessionScope.login }"><i class="fa fa-user"></i></a></li>
-							<li><a href="cart/cartList.do"><i class="fa fa-shopping-cart"></i></a></li>
-							<c:if test="${'admin' eq sessionScope.login }">
-								<li><a href="admin.do"><i class="fa fa-cogs"
-										aria-hidden="true"></i></a></li>
-							</c:if>
-						</ul>
-
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--/header_top : 로그인 / 장바구니 등 4개 아이콘 : header-->
-
-
-		<div class="header_middle"></div>
-		<div class="header-bottom">
-			<!--header-bottom-->
-
-			<div class="container">
-				<div class="row">
-					<div id="sm-9" class="col-sm-9">
-
-						<!-- 상단바 : 상품 카테고리별 분류, 블로그(Q&A, FAQ, 공지사항) -->
-						<div class="mainmenu pull-left ">
-							<ul class="nav navbar-nav collapse navbar-collapse"
-								style="font-size: 0;">
-								<li class="dropdown"><a href="main.do">홈</a></li>
-								<li class="dropdown"><a href="product/getCategoryList.do?category_code=14">케어<i
-										class="fa fa-angle-down"></i></a>
-									<ul role="menu" class="sub-menu">
-										<li><a href="product/getCategoryList.do?category_code=14">목욕</a></li>
-										<li><a href="product/getCategoryList.do?category_code=15">미용</a></li>
-									</ul></li>
-								<li class="dropdown"><a href="product/getCategoryList.do?category_code=9">배변/위생<i
-										class="fa fa-angle-down"></i></a>
-									<ul role="menu" class="sub-menu">
-										<li><a href="product/getCategoryList.do?category_code=9">배변용품</a></li>
-										<li><a href="product/getCategoryList.do?category_code=8">위생용품</a></li>
-									</ul></li>
-								<li class="dropdown"><a href="product/getCategoryList.do?category_code=5">식품<i
-										class="fa fa-angle-down"></i></a>
-									<ul role="menu" id="sub-menu-txt" class="sub-menu">
-										<li><a href="product/getCategoryList.do?category_code=5">간식</a></li>
-										<li><a href="product/getCategoryList.do?category_code=6">사료</a></li>
-										<li><a href="product/getCategoryList.do?category_code=7">영양제</a></li>
-									</ul></li>
-								<li class="dropdown"><a href="product/getCategoryList.do?category_code=1">의류<i
-										class="fa fa-angle-down"></i></a>
-									<ul role="menu" class="sub-menu">
-										<li><a href="product/getCategoryList.do?category_code=1">프리미엄</a></li>
-										<li><a href="product/getCategoryList.do?category_code=2">아우터</a></li>
-										<li><a href="product/getCategoryList.do?category_code=3">상의</a></li>
-										<li><a href="product/getCategoryList.do?category_code=4">악세사리</a></li>
-									</ul></li>
-								<li><a href="blog/notice.do" style="color: #FF9933;">NOTICE</a></li>
-								<li><a href="blog/faq.do" style="color: #FF9933;">FAQ</a></li>
-								<li><a href="blog/qna.do" style="color: #FF9933;">QnA</a></li>
-							</ul>
-						</div>
-						
-						<!-- 검색창 -->
-						<div class="search_box pull-right">
-							<form action="product/searchItems.do" id="searchFrm">
-								<input type="text" placeholder="검색" name="keyword"/> 
-								<a id="searchBtn" style="margin-left: 140px; margin-top: 9px; position: absolute;"><i
-									class="fa-sharp fa-solid fa-magnifying-glass"></i></a>
-							</form>
-						</div>
-						<div id="topHeader" class="appTopArea" style="top: 0px;"></div>
-						<!-- /검색창 -->
-						
-					</div>
-				</div>
-			</div>
-		</div>
+        <jsp:include page="/WEB-INF/views/common/gnb.jsp" />
 	</header>
-
-
 
 	<section id="slider">
 		<!--slider-->
@@ -196,58 +101,56 @@
 	<hr />
 	<!-- 실시간 best 목록 나열 -->
 	<div id="top" class="col-sm-9 padding-right">
-			<!--features_items-->
+		<!--features_items-->
 		<div class="features_items" style="margin-left: -30px;">
 			<h2 class="title text-center" style="font-size: 45px; text-align: left;">STORE BEST</h2>
-
-				<div class="productinfo text-center" style="float:center; display: inline-block; width: 100%; margin-left: 80px;">
-					<div class="product-image-wrapper" style="float: left; display: inline-block; width: 100%;">
-						<c:forEach items ="${productList}" var="vo">
-							<div class="single-products" style="width: 30%; float: left;">
-								<a href="product/product-details.do?product_number=${vo.product_number}"><img src="<%=pjName%>/resources/images/shop/${vo.stored_file_name}" width="400px" height="400px"></a>
-								<p>
-									<a href="product/product-details.do">
-									<input name="product_name" type="text" value="${vo.product_name}" style="border-style: none; width: 100%; text-align: center; font-family: 'Noto Sans KR', sans-serif;"/></a>
-								</p>
-								<strong class="product_price"> <span
-									style="font-size: 16px; color: #000000;" >${vo.product_price}원</span>
-								</strong> <br /> 
-								<img src="<%=pjName%>/resources/images/home/BEST.JPG"
-									id="new" width="2px" height="auto" alt="" /> <img
-									src="<%=pjName%>/resources/images/home/NEW.JPG" id="new"
-									width="2px" height="auto" alt="" />
-							</div>
-						</c:forEach>
-					</div>
+			<div class="productInfo text-center" style="float:center; display: inline-block; width: 100%; margin-left: 80px;">
+				<div class="product-image-wrapper" style="float: left; display: inline-block; width: 100%;">
+					<c:forEach items ="${productList}" var="vo">
+						<div class="single-products" style="width: 30%; float: left;">
+							<a href="product/product-details.do?product_number=${vo.product_number}"><img src="<%=pjName%>/resources/images/shop/${vo.stored_file_name}" width="400px" height="400px"></a>
+							<p>
+								<a href="product/product-details.do">
+								<input name="product_name" type="text" value="${vo.product_name}" style="border-style: none; width: 100%; text-align: center; font-family: 'Noto Sans KR', sans-serif;"/></a>
+							</p>
+							<strong class="product_price"> <span
+								style="font-size: 16px; color: #000000;" >${vo.product_price}원</span>
+							</strong> <br /> 
+							<img src="<%=pjName%>/resources/images/home/BEST.JPG"
+								id="new" width="2px" height="auto" alt="" /> <img
+								src="<%=pjName%>/resources/images/home/NEW.JPG" id="new"
+								width="2px" height="auto" alt="" />
+						</div>
+					</c:forEach>
 				</div>
 			</div>
-			<!--/features_items-->
+		</div>
+		<!--/features_items-->
+	</div>
 	<hr/>
 
 	<div class="category-tab">
 		<img src="<%=pjName%>/resources/images/home/subbanner5.png" width="100%" height="auto" style="margin-bottom: 35px; margin-top: -12px"  alt="" />
 		<div class="col-sm-9">
-		
 			<div class="tab-content">
 				<!-- 신상품 순으로 나열 -->
 				<div class="tab-pane fade active in" id="tshirt">
 					<h2 class="text-category" style="margin-top: -5px; font-size: 45px">NEW PRODUCT</h2><br/><br/>
-					<div class="productinfo text-center" style="float: left; display: inline-block; width: 100%; margin-left: 50px; margin-right: 50px;">
-					<div class="product-image-wrapper" style="float: left; display: inline-block;">
-					
-						<c:forEach items ="${newproductList}" var="vo">
-							<div class="single-products" style="float: left; margin-left: 40px; margin-right: 40px; width: 20%">
-								<div class="productinfo text-center">
-									<a href="product/product-details.do?product_number=${vo.product_number}"><img src="<%=pjName%>/resources/images/shop/${vo.stored_file_name}" width="207px" height="183px"></a>
-									<h2>${vo.product_name}</h2>
-									<p>${vo.product_price}원</p>
+					<div class="productInfo text-center" style="float: left; display: inline-block; width: 100%; margin-left: 50px; margin-right: 50px;">
+						<div class="product-image-wrapper" style="float: left; display: inline-block;">
+							<c:forEach items ="${newproductList}" var="vo">
+								<div class="single-products" style="float: left; margin-left: 40px; margin-right: 40px; width: 20%">
+									<div class="productInfo text-center">
+										<a href="product/product-details.do?product_number=${vo.product_number}"><img src="<%=pjName%>/resources/images/shop/${vo.stored_file_name}" width="207px" height="183px"></a>
+										<h2>${vo.product_name}</h2>
+										<p>${vo.product_price}원</p>
+									</div>
 								</div>
-							</div>
 							</c:forEach>
+						</div>
 					</div>
-					</div>
+				</div>
 			</div>
-		</div>
 		</div>
 	</div>
 	<!--/category-tab-->
@@ -260,16 +163,14 @@
 	<div class="col-sm-9">
 		<!--recommended_items-->
 		<div class="recommended_items">
-			<br />
 			<h2 class="title text-center"
 				style="margin-top: 20px; text-align: left; font-size: 45px">CARE ITEM</h2>
-
 			<div id="recommended-item-carousel" class="carousel slide"
 				data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="item active" style="margin-left: 12%;">
 						<div class="col-sm-4" id="col-sm-4">
-							<div class="productinfo text-center">
+							<div class="productInfo text-center">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<a href="product/product-details.do?product_number=232"><img
@@ -289,7 +190,7 @@
 							</div>
 						</div>
 						<div class="col-sm-4" id="col-sm-4">
-							<div class="productinfo text-center">
+							<div class="productInfo text-center">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<a href="product/product-details.do?product_number=277"><img
@@ -309,7 +210,7 @@
 							</div>
 						</div>
 						<div class="col-sm-4" id="col-sm-4">
-							<div class="productinfo text-center">
+							<div class="productInfo text-center">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<a href="product/product-details.do?product_number=250"><img
@@ -330,7 +231,7 @@
 					</div>
 					<div class="item" style="margin-left: 12%;">
 						<div class="col-sm-4" id="col-sm-4">
-							<div class="productinfo text-center">
+							<div class="productInfo text-center">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<a href="product/product-details.do?product_number=292"><img
@@ -350,7 +251,7 @@
 							</div>
 						</div>
 						<div class="col-sm-4" id="col-sm-4">
-							<div class="productinfo text-center">
+							<div class="productInfo text-center">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<a href="product/product-details.do?product_number=253"><img
@@ -370,7 +271,7 @@
 							</div>
 						</div>
 						<div class="col-sm-4" id="col-sm-4">
-							<div class="productinfo text-center">
+							<div class="productInfo text-center">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<a href="product/product-details.do?product_number=234"><img
@@ -423,7 +324,7 @@
 				<div class="carousel-inner">
 					<div class="item active" style="margin-left: 12%;">
 						<div class="col-sm-4" id="col-sm-4">
-							<div class="productinfo text-center">
+							<div class="productInfo text-center">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<a href="product/product-details.do?product_number=2"><img
@@ -443,7 +344,7 @@
 							</div>
 						</div>
 						<div class="col-sm-4" id="col-sm-4">
-							<div class="productinfo text-center">
+							<div class="productInfo text-center">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<a href="product/product-details.do?product_number=2"><img
@@ -463,7 +364,7 @@
 							</div>
 						</div>
 						<div class="col-sm-4" id="col-sm-4">
-							<div class="productinfo text-center">
+							<div class="productInfo text-center">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<a href="product/product-details.do?product_number=8"><img
@@ -485,7 +386,7 @@
 					</div>
 					<div class="item" style="margin-left: 12%;">
 						<div class="col-sm-4" id="col-sm-4">
-							<div class="productinfo text-center">
+							<div class="productInfo text-center">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<a href="product/product-details.do?product_number=55"><img
@@ -505,7 +406,7 @@
 							</div>
 						</div>
 						<div class="col-sm-4" id="col-sm-4">
-							<div class="productinfo text-center">
+							<div class="productInfo text-center">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<a href="product/product-details.do?product_number=7"><img
@@ -525,7 +426,7 @@
 							</div>
 						</div>
 						<div class="col-sm-4" id="col-sm-4">
-							<div class="productinfo text-center">
+							<div class="productInfo text-center">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<a href="product/product-details.do?product_number=68"><img
@@ -571,61 +472,13 @@
 		</div>
 	</div>
 	<!--/recommended_items-->
-
-		
 	<!-- logout Modal -->
-	<div class="modal fade" id="logoutModalCenter" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h2 class="modal-title" id="exampleModalLabel">Petdo - 로그아웃</h2>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body" style="padding: 50px;">로그아웃 하시겠습니까?</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal" style="border-radius: 10px;">취소</button>
-					<a class="btn btn-primary" href="logOut.do"
-						style="border-radius: 10px; margin-top: 0px">로그아웃</a>
-				</div>
-			</div>
-		</div>
-	</div>	
+    <jsp:include page="/WEB-INF/views/common/logoutModal.jsp" />	
 	<!-- /logout Modal -->
-
 	<footer id="footer">
-		<!--Footer-->
-		<div class="footer-widget">
-			<div class="container">
-				<div class="row" style="padding: 3%;">
-					<div class="col-sm-4"></div>
-					<div class="col-sm-4">
-						<div class="contact-info">
-							<h2 class="title text-center">Contact Info</h2>
-							<address>
-								<p>(주)펫두</p>
-								<p>서울 금천구 가산디지털2로 101 3층 302호</p>
-								<p>서울특별시 금천구 가산동</p>
-								<p>Mobile: +82 10 1234 5678</p>
-								<p>Fax: 1234-5678</p>
-								<p>Email:petdo@shopper.com</p>
-							</address>
-
-						</div>
-					</div>
-				</div>
-			</div>
-			
-		
-		</div>
-
+        <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</footer>
 	<!--/Footer-->
-
 
 	<!-- script -->
 	<script src="<%=pjName%>/resources/js/jquery.js"></script>
@@ -646,7 +499,7 @@
 			if(keyword==null || keyword==' '){
 				alert('검색어를 입력해주세요.');
 			} else {
-				$('#searchFrm').attr('action','product/searchItems.do?keyword='+keyword);
+				$('#searchFrm').attr('action','/petdo/product/searchItems.do?keyword='+keyword);
 				$('#searchFrm').submit();	
 			}//end of if
 		})//end of click

@@ -1154,6 +1154,13 @@ ul {
 	overflow:hidden;
   background-color: #ffffff;
   margin-bottom: 50px;
+  
+  .product-content {
+  	display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10em;
+    width: fit-content;
+  }
 }
 
 h2.text-category{
@@ -1224,7 +1231,7 @@ h2.title {
   right: 0;
 }
 
-.productinfo h2{
+.productInfo h2{
   margin-top: 30px;
   margin-bottom: 6px;
   font-family:"Frutiger LT Pro 75 Black","sans-serif";
@@ -1243,7 +1250,7 @@ h2.title {
 }
 
 
-.productinfo p{
+.productInfo p{
   margin-top: 15px;
   margin-bottom: 6px;
   font-family:"Frutiger LT Pro 75 Black","sans-serif";
@@ -1257,7 +1264,7 @@ h2.title {
 
 video { max-width: 50%; display: block; margin: 20px auto; margin-bottom: 45px; float: left; margin-left: 140px; margin-right: 95px;}
 
-.productinfo{
+.productInfo{
  width: 80%;
 }
 
@@ -1398,13 +1405,13 @@ video { max-width: 50%; display: block; margin: 20px auto; margin-bottom: 45px; 
 }
 
 
-.col-sm-4 .productinfo {
+.col-sm-4 .productInfo {
   margin-left: 90px;
   
 }
 
 
-.col-sm-4  .productinfo .product-image-wrapper img{
+.col-sm-4  .productInfo .product-image-wrapper img{
   width: 90%;
   height: auto;
 }
@@ -1466,6 +1473,7 @@ div.single-products {
   margin-right:0;
 }
 
+
 .recommended_items {
   overflow: hidden;
   background-color: #ffffff;
@@ -1492,9 +1500,6 @@ div.single-products {
 
 .recommended-item-control i:hover {
   background: #ccccc6;
-}
-
-.recommended_items  h2 {
 }
 
 .our_partners{
@@ -1607,6 +1612,9 @@ div.single-products {
 }
 
 
+.nav-tabs.nav-justified li {
+	width: auto;
+}
 
 .view-product {
   width: 100%;
@@ -2134,7 +2142,7 @@ div.single-products {
 }
 
 .heading h3 {
-  color: #363432;right
+  color: #363432;
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
 }
@@ -2444,11 +2452,10 @@ div.single-products {
 **************************/
 
 
-
 .blog-post-area 
 .single-blog-post h3 {
   color: #696763;
-  font-size: 16px;
+  font-size: 20pt;
   font-family: 'Roboto',sans-serif;
   text-transform: uppercase;
   font-weight: 500;
@@ -2531,6 +2538,11 @@ div.single-products {
   color: #FE980F
 }
 
+.post-meta span .post-content{
+  margin : 1% auto;
+  width: 100%;
+  min-height: 30%;
+}
 
 .blog-post-area  
 .single-blog-post 
@@ -2795,8 +2807,11 @@ div.single-products {
 
 
 .replay-box {
-  margin-bottom: 107px;
-  margin-top: 55px;
+  margin-bottom: 5%;
+}
+
+html body .replay-box .text-area {
+  margin-top : 0!important;
 }
 
 .replay-box h2 {
@@ -2838,7 +2853,7 @@ div.single-products {
 }
 
 .text-area {
-  margin-top: 66px
+  margin-top: 66px;
 }
 
 .text-area textarea {
@@ -3108,7 +3123,8 @@ color: #31424e;
 }
 	
 	
-	
-
+.carousel-inner .item.active .col-sm-6 {
+	width: 100%!important;
+}
 
 

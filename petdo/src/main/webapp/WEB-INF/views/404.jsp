@@ -53,7 +53,7 @@ body{background-color: #f8f9fc; display: flex; justify-content: center; align-it
                         <div class="error mx-auto" data-text="404">404</div>
                         <p class="lead text-gray-800 mb-5">Page Not Found</p>
                         <p class="text-gray-500 mb-0">존재하지 않는 화면입니다.</p>
-                        <a href="<%=pjName %>/logOut.do">&larr; 로그인 페이지로 이동</a>
+                        <a href="<%=pjName %>/main.do">&larr; 초기 화면으로 이동</a>
                     </div>
 
                 </div>
