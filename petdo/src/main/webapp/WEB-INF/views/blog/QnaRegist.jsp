@@ -69,37 +69,9 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
-						<h2>Category</h2>
-						<div class="panel-group category-products" id="accordian">
-							<!--category-productsr-->
-
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a href="faq.do">FAQ</a>
-									</h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a href="qna.do">QnA</a>
-									</h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a href="notice.do">공지사항</a>
-									</h4>
-								</div>
-							</div>
-						</div>
-						<!--/category-productsr-->
-
 						<div class="shipping text-center">
 							<!--shipping-->
-							<img src="<%=pjName%>/resources/images/home/shipping.jpg" alt="" />
+							<img src="<%=pjName%>/resources/images/home/shipping.jpg" alt="" style="width: 100%;"/>
 						</div>
 						<!--/shipping-->
 					</div>
@@ -161,27 +133,6 @@
 	<script src="<%=pjName%>/resources/js/bootstrap.min.js"></script>
 	<script src="<%=pjName%>/resources/js/jquery.prettyPhoto.js"></script>
 	<script src="<%=pjName%>/resources/js/main.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			$("#insertQna").click(function() { //QnA 새글 등록 실행
-				$("form#insertQnaBtn").submit();
-			})
-			
-			//상품 검색 jQuery
-			$('#searchBtn').click(function(){
-				
-				//검색 input의 값을 저장함
-				let keyword = $('#searchFrm input[name="keyword"]').val();
-				
-				//null값이거나 빈칸일 경우 알림창 띄움, 값이 있을 경우에만 검색
-				if(keyword==null || keyword==' '){
-					alert('검색어를 입력해주세요.');
-				} else {
-					$('#searchFrm').attr('action','../product/searchItems.do?keyword='+keyword);
-					$('#searchFrm').submit();	
-				}//end of if
-			})//end of click
-		})
-	</script>
+	<script src="<%=pjName%>/resources/js/search.js"></script>
 </body>
 </html>

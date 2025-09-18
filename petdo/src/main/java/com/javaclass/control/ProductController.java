@@ -14,12 +14,22 @@ import com.javaclass.domain.ProductVO;
 import com.javaclass.domain.ReviewVO;
 import com.javaclass.service.ProductService;
 
+@SuppressWarnings("unused")
 @Controller
 @RequestMapping("/product")
 public class ProductController {
 
 	@Autowired
-	ProductService productService;
+	ProductService productService;	
+	
+	// 베스트 상품 출력
+	@RequestMapping("/main.do")
+	public String bestProduct(ProductVO vo , Model m) {
+		List<ProductVO> product = productService.topProduct(vo);
+		System.out.println(product.size());
+		m.addAttribute("productList" , product);
+		return "main";
+	}
 	
 	//상품 목록조회(페이징 처리)
 	@RequestMapping(value="/getProductList.do")
@@ -50,7 +60,7 @@ public class ProductController {
 	@RequestMapping("/product-details.do")
 	public String getProduct(ProductVO vo,ReviewVO vo2, Model m , ProductVO vo1, Model model) {
 		ProductVO result = productService.getProduct(vo);
-		System.out.println(result);
+		// System.out.println(result);
 		m.addAttribute("getProduct", result);
 		Integer product_number = vo.getProduct_number();
 		// 리뷰 조회
@@ -58,7 +68,7 @@ public class ProductController {
 		m.addAttribute("orderReview", list);
 		// 조회수 증가
 		productService.hitsplus(vo1.getProduct_number());	// 조회수 증가
-		System.out.println(vo1);
+		// System.out.println(vo1);
 		ProductVO count = productService.getProduct(vo1);
 		model.addAttribute("count", count);
 		
@@ -78,19 +88,13 @@ public class ProductController {
 	// 리뷰 작성
 	@RequestMapping("/reviewRegister.do")
 	public String reviewRegister(ReviewVO vo, Model m) {
+		System.out.println("리뷰 작성 처리");
 		System.out.println(vo);
 		productService.insertReview(vo);
-		return "redirect:product-details.do";
+		return "redirect:product-details.do?product_number=" + vo.getProduct_number();
+
 	}
-	
-	// 베스트 상품 출력
-	@RequestMapping("/main.do")
-	public String bestProduct(ProductVO vo , Model m) {
-		List<ProductVO> product = productService.topProduct(vo);
-		System.out.println(product.size());
-		m.addAttribute("productList" , product);
-		return "main";
-	}
+
 	
 	
 }

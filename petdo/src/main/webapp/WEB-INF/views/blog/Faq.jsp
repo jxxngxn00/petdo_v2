@@ -18,10 +18,6 @@
     <link href="<%=pjName %>/resources/blog-css/animate.css" rel="stylesheet">
 	<link href="<%=pjName %>/resources/blog-css/main.css" rel="stylesheet">
 	<link href="<%=pjName %>/resources/blog-css/responsive.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->       
     <link rel="shortcut icon" href="<%=pjName %>/resources/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%=pjName %>/resources/images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%=pjName %>/resources/images/ico/apple-touch-icon-114-precomposed.png">
@@ -79,23 +75,6 @@
 	<script src="<%=pjName %>/resources/js/bootstrap.min.js"></script>
     <script src="<%=pjName %>/resources/js/jquery.prettyPhoto.js"></script>
     <script src="<%=pjName %>/resources/js/main.js"></script>
-	<script type="text/javascript">
-	    $(function(){
-	    	//상품 검색 jQuery
-			$('#searchBtn').click(function(){
-					
-			//검색 input의 값을 저장함
-			let keyword = $('#searchFrm>input[name="keyword"]').val();
-					
-			//null값이거나 빈칸일 경우 알림창 띄움, 값이 있을 경우에만 검색
-			if(keyword==null || keyword==' '){
-					alert('검색어를 입력해주세요.');
-				} else {
-					$('#searchFrm').attr('action','../product/searchItems.do?keyword='+keyword);
-					$('#searchFrm').submit();	
-				}//end of if
-			})//end of click
-	    })
-    </script>
+	<script src="<%=pjName%>/resources/js/search.js"></script>
 </body>
 </html>

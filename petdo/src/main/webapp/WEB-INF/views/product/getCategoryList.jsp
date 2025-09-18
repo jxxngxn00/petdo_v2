@@ -6,22 +6,6 @@
 <%@page import="com.javaclass.service.ProductServiceImpl"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 
-
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-	$(document).ready(function() {
-		var listForm = $("#listForm");
-		$(".pagination_button a").on("click", function(e) {
-			e.preventDefault();
-			listForm.find("input[name='pageNum']").val($(this).attr("href"));
-			listForm.submit();
-		});
-	});
-</script>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -171,21 +155,20 @@
 	<script src="<%=pjName %>/resources/js/jquery.prettyPhoto.js"></script>
 	<script src="<%=pjName %>/resources/js/main.js"></script>
 	<script src="<%=pjName %>/resources/js/jquery_1.js"></script>
-	<script type="text/javascript">
-	//상품 검색 jQuery
-	$('#searchBtn').click(function(){
-			
-	//검색 input의 값을 저장함
-	let keyword = $('#searchFrm input[name="keyword"]').val();
-			
-	//null값이거나 빈칸일 경우 알림창 띄움, 값이 있을 경우에만 검색
-	if(keyword==null || keyword==' '){
-			alert('검색어를 입력해주세요.');
-		} else {
-			$('#searchFrm').attr('action','searchItems.do?keyword='+keyword);
-			$('#searchFrm').submit();	
-		}//end of if
-	})//end of click
+	<script src="<%=pjName%>/resources/js/search.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="<%=pjName%>/resources/js/search.js"></script>
+	<script>
+		$(document).ready(function() {
+			var listForm = $("#listForm");
+			$(".pagination_button a").on("click", function(e) {
+				e.preventDefault();
+				listForm.find("input[name='pageNum']").val($(this).attr("href"));
+				listForm.submit();
+			});
+		});
 	</script>
+
+	
 </body>
 </html>

@@ -929,7 +929,6 @@ h2.title {
 	transition: height 500ms ease 0s;
 	width: 100%;
 	display: block;
-	opacity:;
 }
 
 .single-products:hover .product-overlay {
@@ -1089,10 +1088,6 @@ h2.title {
 
 .recommended-item-control i:hover {
 	background: #ccccc6;
-}
-
-.recommended_items  h2 {
-	
 }
 
 .our_partners {
@@ -1462,14 +1457,6 @@ h2.title {
 	overflow: hidden;
 }
 
-.login-form {
-	
-}
-
-.signup-form {
-	
-}
-
 .login-form h2, .signup-form h2 {
 	color: #696763;
 	font-family:'Noto Sans KR', sans-serif;
@@ -1516,10 +1503,6 @@ h2.title {
 	display: block;
 	font-family:'Noto Sans KR', sans-serif;
 	padding: 6px 25px;
-}
-
-.login-form label {
-	
 }
 
 .login-form label input {
@@ -1597,7 +1580,6 @@ h2.title {
  	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: normal;
 	width:100%;
-	height: auto%;
 }
 
 #payTable thead tr {
@@ -1660,7 +1642,6 @@ h2.title {
 	overflow: hidden;
 	text-align: center;
 	width: 35px;
-	float: left;
 }
 
 .cart_quantity_input {
@@ -1759,10 +1740,6 @@ h2.title {
 .user_info>li {
 	float: left;
 	margin-right: 10px
-}
-
-.user_info>li>span {
-	
 }
 
 .user_info input, select, textarea {
@@ -1938,7 +1915,6 @@ h2.title {
  }
 
 table#payTbl{
-	weight:50%;
 	margin:auto;
 }
 
@@ -2611,8 +2587,8 @@ table.type09 td {
 
 #tableArea>a{
 	margin-top:18px;
-	margin-botton:18px;
 }
+
 /*payment*/
 
 
@@ -2721,7 +2697,6 @@ h4{
   padding: 13px;
   background-color: #fcfcfc;
   display: inline-block;
-  float: left;
   text-align: center;
   border: 1px solid #c0bfbf;
 }
@@ -2744,7 +2719,6 @@ h4{
   width: 50%;
   padding: 12px;
   background-color: #fcfcfc;
-  float: left;
   text-align: center;
   font-size: 16px;
   outline: none;

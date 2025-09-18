@@ -12,7 +12,6 @@
 }
 
 body {
-  background:;
   position: relative;
   font-weight:400px;
 }
@@ -811,7 +810,6 @@ h2.title:before{
 
 .shipping {
   background-color: #F2F2F2;
-  margin-top: 40px;
   overflow: hidden;
   padding-top: 20px;
   position: relative;
@@ -925,8 +923,7 @@ h2.title {
   position: absolute;
   transition: height 500ms ease 0s;
   width: 100%;
-  display: block;
-  opacity:;
+  display: block;;
 }
 
 .single-products:hover .product-overlay {
@@ -1090,9 +1087,6 @@ h2.title {
 
 .recommended-item-control i:hover {
   background: #ccccc6;
-}
-
-.recommended_items  h2 {
 }
 
 .our_partners{
@@ -1460,13 +1454,6 @@ h2.title {
   overflow: hidden;
 }
 
-.login-form {
-
-}
-
-.signup-form {
-
-}
 
 .login-form h2 {
   color: #696763;
@@ -1553,11 +1540,6 @@ h2.title {
   font-family:'Noto Sans KR', sans-serif;
   padding: 6px 25px;
 }
-
-.login-form label{
-
-}
-
 
 .login-form label input {
   border: medium none;
@@ -1704,7 +1686,6 @@ h2.title {
   overflow: hidden;
   text-align: center;
   width: 35px;
-  float: left;
 }
 
 
@@ -1815,8 +1796,6 @@ h2.title {
   margin-right: 10px
 }
 
-.user_info > li > span {
-}
 
 .user_info input, select, textarea {
   background: #F0F0E9;
@@ -2056,9 +2035,7 @@ h2.title {
 /* -list : FAQ에서만의 CSS 적용 */
 
 .blog-post-area-list
-.single-blog-post-list h3,
-.blog-post-area
-.single-blog-post h3 {
+.single-blog-post-list h3{
   color: #696763;
   font-size: 12pt;
   font-family: 'Noto Sans KR', sans-serif;
@@ -2066,6 +2043,20 @@ h2.title {
   font-weight: 500;
   margin-bottom: 17px;
   text-align: center;
+}
+.blog-post-area .single-blog-post {
+	h3 {
+	  color: rgb(63, 62, 58);
+	  font-size: 2em;
+	  font-family: 'Noto Sans KR', sans-serif;
+	  text-transform: uppercase;
+	  font-weight: 700;
+	  margin-bottom: 17px;
+	  text-align: left;
+	}
+	.post-content {
+		font-size: 1.35em;
+	}
 }
 
 .blog-post-area-list {
@@ -2096,10 +2087,6 @@ div.single-blog-post-list:hover{
 @keyframes shadow{
   0%{box-shadow: 0px 0px 10px 1px #CCCCCC;}
   100%{box-shadow: 0px 0px 10px 1px #5c5c5c;}
-}
-
-
-.single-blog-post > a {
 }
 
 
@@ -2147,7 +2134,7 @@ div.single-blog-post-list:hover{
   float: left;
   margin-right: 10px;
   padding: 0 5px;
-  font-size: 11px;
+  font-size: 1em;
   color: #393b3b;
   position: relative;
 }
@@ -2268,7 +2255,10 @@ div.single-blog-post-list:hover{
   color: #fff
 }
 
-
+#comment {
+	display: flex;
+    align-items: center;
+}
 
 /*************************
 *******Blog Single CSS******
@@ -2725,4 +2715,3 @@ div.single-blog-post-list:hover{
 	
 	
 }	
-}

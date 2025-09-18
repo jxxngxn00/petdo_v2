@@ -12,7 +12,7 @@
 <%
 	String pjName = "/petdo";
 %>
-<link href="<%=pjName%>/resources/pay-css/bootstrap.min.css"
+<link href="<%=pjName%>/resources/mCss/bootstrap.min.css"
 	rel="stylesheet">
 <link href="<%=pjName%>/resources/pay-css/font-awesome.min.css"
 	rel="stylesheet">
@@ -24,10 +24,6 @@
 <link href="<%=pjName%>/resources/pay-css/main.css" rel="stylesheet">
 <link href="<%=pjName%>/resources/pay-css/responsive.css"
 	rel="stylesheet">
-<!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
 <link rel="shortcut icon"
 	href="<%=pjName%>/resources/images/ico/favicon.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
@@ -52,7 +48,7 @@
 
 	<section id="cart_items">
 
-	<div class="address-info" id="address-info">
+	<div class="address_info" id="address_info">
 		<table class="type09" style="margin-left:675px;">
 			<thead>
 				<tr>
@@ -70,7 +66,7 @@
 				</tr>
 				<tr>
 					<th scope="row" rowspan='2'>배송지 주소</th>
-					<td><input type='text' readonly="true" value="${userInfo.user_address1 }"><input
+					<td><input type='text' readonly value="${userInfo.user_address1 }"><input
 						type='button' value='우편번호'></td>
 				</tr>
 				<tr>
@@ -90,7 +86,7 @@
 					<tr>
 						<th colspan="5">
 							<div  class="review-payment">
-								<h2 style="margin-left:0px;">Review & Payment</h2>
+								<h2 style="margin-left:0px;">Review n Payment</h2>
 							</div>
 						</th>
 					</tr>
@@ -206,33 +202,11 @@
 	</form>
 	</section>
 
-	<!-- logout Modal -->
-	<div class="modal fade" id="logoutModalCenter" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h2 class="modal-title" id="exampleModalLabel">Petdo - 로그아웃</h2>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body" style="padding: 50px;">로그아웃 하시겠습니까?</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal" style="border-radius: 10px;">취소</button>
-					<a class="btn btn-primary" href="../logOut.do"
-						style="border-radius: 10px; margin-top: 0px">로그아웃</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- /logout Modal -->
+	
+   	<jsp:include page="/WEB-INF/views/common/logoutModal.jsp" />
 	<footer id="footer">
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</footer>
-	<!--/Footer-->
 
 	<script src="<%=pjName%>/resources/js/jquery.js"></script>
 	<script src="<%=pjName%>/resources/js/bootstrap.min.js"></script>
@@ -240,29 +214,14 @@
 	<script src="<%=pjName%>/resources/js/price-range.js"></script>
 	<script src="<%=pjName%>/resources/js/jquery.prettyPhoto.js"></script>
 	<script src="<%=pjName%>/resources/js/main.js"></script>
+	<script src="<%=pjName%>/resources/js/search.js"></script>
 	<script type="text/javascript">
-		$(function(){
-			//상품 검색 jQuery
-			$('#searchBtn').click(function(){
-				
-				//검색 input의 값을 저장함
-				let keyword = $('#searchFrm input[name="keyword"]').val();
-				
-				//null값이거나 빈칸일 경우 알림창 띄움, 값이 있을 경우에만 검색
-				if(keyword==null || keyword==' '){
-					alert('검색어를 입력해주세요.');
-				} else {
-					$('#searchFrm').attr('action','../product/searchItems.do?keyword='+keyword);
-					$('#searchFrm').submit();	
-				}//end of if
-			})//end of click
-			
+		$(function(){		
 			//계좌이체 선택시 계좌 입력 폼으로 이동
 			$('input#moneytransfer').click(function(){
 				//alert('moneytransfer');
 				$('a#pay-btn').attr('href','../pay/moneytransfer.do');
 			});//end of click
-
 
 			//신용카드 선택시 카드 입력 폼으로 이동
 			$('input#creditCard').click(function(){
@@ -270,21 +229,6 @@
 				$('a#pay-btn').attr('href','../pay/payment.do');
 			});//end of click
 			
-			
-	    	//상품 검색 jQuery
-			$('#searchBtn').click(function(){
-					
-			//검색 input의 값을 저장함
-			let keyword = $('#searchFrm input[name="keyword"]').val();
-					
-			//null값이거나 빈칸일 경우 알림창 띄움, 값이 있을 경우에만 검색
-			if(keyword==null || keyword==' '){
-					alert('검색어를 입력해주세요.');
-				} else {
-					$('#searchFrm').attr('action','../product/searchItems.do?keyword='+keyword);
-					$('#searchFrm').submit();	
-				}//end of if
-			})//end of click
 			
 		})//end of function
 	</script>

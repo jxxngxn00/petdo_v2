@@ -19,17 +19,17 @@
 	<%
 		String pjName = "/petdo";
 	%>
-	<link href="<%=pjName%>/resources/mCss/bootstrap.min.css"
-		rel="stylesheet">
-	<link href="<%=pjName%>/resources/mCss/font-awesome.min.css"
-		rel="stylesheet">
-	<link href="<%=pjName%>/resources/mCss/prettyPhoto.css"
-		rel="stylesheet">
-	<link href="<%=pjName%>/resources/mCss/price-range.css"
-		rel="stylesheet">
+	<!-- CSS -->
+	<link href="<%=pjName%>/resources/mCss/bootstrap.min.css" rel="stylesheet">
+	<link href="<%=pjName%>/resources/mCss/font-awesome.min.css" rel="stylesheet">
+	<link href="<%=pjName%>/resources/mCss/prettyPhoto.css" rel="stylesheet">
+	<link href="<%=pjName%>/resources/mCss/price-range.css" rel="stylesheet">
 	<link href="<%=pjName%>/resources/mCss/animate.css" rel="stylesheet">
 	<link href="<%=pjName%>/resources/mCss/main.css" rel="stylesheet">
 	<link href="<%=pjName%>/resources/mCss/responsive.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/3364ed6976.js" crossorigin="anonymous"></script>
+	
+	<!-- icon -->
 	<link rel="shortcut icon" href="<%=pjName%>/resources/images/ico/favicon.ico">
 	<link rel="apple-touch-icon-precomposed" sizes="144x144"
 		href="<%=pjName%>/resources/images/ico/apple-touch-icon-144-precomposed.png">
@@ -56,7 +56,7 @@
 					style="text-align: center; margin-bottom: 50px;">${productInfo.productName}</h1>
 				<input type="hidden" value="${getProduct.product_name}"
 					id="product_number" style="font-weight: bold">
-				<input type="hidden" value="${getProduct.product_stock}" id="product1_stock"/>	
+				<input type="hidden" value="${getProduct.product_stock}" id="product_stock"/>	
 			</div>
 			<div class="row" style="float: left; text-align: center; width: 35%;">
 				<img alt="productPhoto"
@@ -73,9 +73,8 @@
 				<div class="form-group" style="text-align: left;">
 					<label>가격 : </label>
 					<span>&nbsp; 
-						<fmt:formatNumber value="${getProduct.product_price}" type="number" />
+						<fmt:formatNumber value="${getProduct.product_price}" type="number" /> 원
 					</span>
-					<span>&nbsp;${getProduct.product_price}원</span>
 					<input type="hidden" value="${getProduct.product_price}" id="price">
 				</div>
 				<div class="form-group" style="text-align: left;">
@@ -85,6 +84,7 @@
 				<div class="form-horizontal" style="text-align: left;">
 					<label>구매수량 : </label> <select name="product_count"
 						class="form-control" id="select_count">
+							<option value="0"> 수량을 선택하세요.</option>
 						<c:forEach var="i" begin="1" end="${getProduct.product_stock}">
 							<option value="${i}">${i}</option>
 						</c:forEach>
@@ -101,7 +101,9 @@
 					
 					<div class="row" style="margin-top: 20px; margin-left: 50px;">
 						<div class="selected_option"
-							style="text-align: right; margin-top: 230px;"></div>
+							style="text-align: right; margin-top: 230px;">
+							<div class="total_price"></div>	
+						</div>
 						<div class="orderbtn" style="text-align: center;">
 							<a href="../cart/cartList.do">
 								<button id="submit" class="btn btn-fault cart" style="width: 200px">장바구니</button></a>
@@ -142,31 +144,34 @@
 			</div>
 
 			<!-- 리뷰 조회 -->
-			<div class="view-reviews" style="text-align: center; margin: 80px 0;">
+			<div class="view-reviews" style="text-align: center; margin: 80px auto;">
 				<h1 class="page-header"
 					style="margin-bottom: 50px; font-weight: bold">리뷰</h1>
 				<div style="margin:auto;">
 					<c:forEach items="${orderReview}" var="vo">
-							<div class="form-group">
-								<input name="product_number" type="hidden"
-									value="${vo.product_number}" /> <label for="username"
-									style="float: left; margin-top: 5px;"> 이름 <span
-									class="require"></span>
-								</label> <input type="text" class="form-control" id="username"
-									value="${vo.review_writer}" readonly
-									style="width: 14%; margin-left: 50px;">
-							</div>
-							<div style=" height:300px; vertical-align:center;">
-								<div style="float:left; width:25%; margin-bottom: 30px; padding-left: 50px;">
-									<img
-										src="<%=pjName %>/resources/images/review/${vo.review_realname}"
-										style="float: left; height:214px; width:auto;">
+					        <div class="panel panel-default">
+							  <div class="panel-body">
+								<div class="content-div writer">
+									<input name="product_number" type="hidden"
+										value="${vo.product_number}" />
+									<label class="user-name-label">
+										작성자
+									</label> 
+									<span class="user-name" style="display: inline-block;">${vo.review_writer}</span>
 								</div>
-								<div class="form-group" style="margin-left:10px; float:left; width:70%;">
-									<textarea class="form-control" rows="10" id="reviewTxt" readonly
-										style="word-break: break-all; width: 100%; height:100%;">${vo.review_content}</textarea>
+								<div class="content-div content">
+									<div class="review-content-div">
+										<div style="word-break: break-all; text-align: left; padding: 10px; border: 1px solid #ddd; border-radius: 4px; background: #fafafa;">${vo.review_content}</div>
+									</div>
+									<div style="width:25%; margin-bottom: 30px;">
+										<%-- <img
+											src="<%=pjName %>/resources/images/review/${vo.review_realname}"
+											style="float: left; height:214px; width:auto;"> --%>
+									</div>
 								</div>
+							  </div>
 							</div>
+							
 					</c:forEach>
 				</div>
 			</div>
@@ -183,14 +188,13 @@
 					<div class="product-page-content" id="review">
 						<div class="tab-content" style="width: 100%;">
 							<div class="tab-pane fade in active">
-								<form id="reviewRegister" action="reviewRegister.do"
-									class="reviews-form" method="post"
-									enctype="multipart/form-data" style="">
+								<form id="reviewRegister" action="reviewRegister.do" class="reviews-form" 
+									method="post" enctype="multipart/form-data">
 									<div class="form-group">
 										<input name="product_number" type="hidden"
-											value="${getProduct.product_number}" /> <label
-											for="review_writer" style="float: left; margin-top: 5px;">
-											이름 <span class="require"></span>
+											value="${getProduct.product_number}" /> 
+										<label for="review_writer" style="float: left; margin-top: 5px;">
+											이름 	<span class="require"></span>
 										</label> <input type="text" class="form-control" name="review_writer"
 											value=<%=session.getAttribute("login")%> readonly
 											style="width: 14%; margin-left: 50px;">
@@ -206,7 +210,6 @@
 									<div class="padding-top-20">
 										<button type="submit" id="review_btn"
 											class="btn btn-primary reviewBtn" style="float: right">작성하기</button>
-										<br /> <br /> <br />
 									</div>
 								</form>
 							</div>
@@ -224,35 +227,26 @@
 			</div>
 		</div>
 	</section>
-
+	
+	<jsp:include page="/WEB-INF/views/common/logoutModal.jsp" />
 	<footer id="footer">
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</footer>
-	<!--/Footer-->
+	
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="<%=pjName%>/resources/js/jquery_1.js"></script>
+	<script src="<%=pjName%>/resources/js/product.js"></script>
 	<script src="<%=pjName%>/resources/js/price-range.js"></script>
 	<script src="<%=pjName%>/resources/js/jquery.scrollUp.min.js"></script>
 	<script src="<%=pjName%>/resources/js/bootstrap.min.js"></script>
 	<script src="<%=pjName%>/resources/js/jquery.prettyPhoto.js"></script>
 	<script src="<%=pjName%>/resources/js/main.js"></script>
+	<script src="<%=pjName%>/resources/js/search.js"></script>
 	<script type="text/javascript">
       $(function() {
-      	//상품 검색 jQuery
-  		$('#searchBtn').click(function(){
-  				
-  		//검색 input의 값을 저장함
-  		let keyword = $('#searchFrm input[name="keyword"]').val();
-  				
-  		//null값이거나 빈칸일 경우 알림창 띄움, 값이 있을 경우에만 검색
-  		if(keyword==null || keyword==' '){
-  				alert('검색어를 입력해주세요.');
-  			} else {
-  				$('#searchFrm').attr('action','searchItems.do?keyword='+keyword);
-  				$('#searchFrm').submit();	
-  			}//end of if
-  		})//end of click
+    	$('#review_btn').click(function(e){
+    		$('#reviewRegister').submit();
+    	});
       })
    </script>
 

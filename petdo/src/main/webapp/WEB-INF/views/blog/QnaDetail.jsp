@@ -82,11 +82,11 @@
 							</a>
 							<div class="media-body">
 								<c:if test="${qna.answer_title ne null}">
-									<h4 class="media-heading">PetDo 운영자</h4>
-									<p>${qna.answer_content }</p>
+									<h4 class="media-heading" style="font-size:1.6em">PetDo 운영자</h4>
+									<p style="font-size:1.1em">${qna.answer_content }</p>
 								</c:if>
 								<c:if test="${qna.answer_title eq null}">
-									<h4 class="media-heading">아직 답변이 달리지 않았습니다.</h4>
+									<h4 class="media-heading" style="font-size:1.3em">아직 답변이 달리지 않았습니다.</h4>
 								</c:if>
 							</div>
 						</div>
@@ -141,27 +141,6 @@
 	<script src="<%=pjName%>/resources/js/jquery.prettyPhoto.js"></script>
 	<script src="<%=pjName%>/resources/js/main.js"></script>
 	<script src="<%=pjName%>/resources/js/reply.js"></script>
-	<script type="text/javascript">
-    $(function(){
-    	$("#insertQna").click(function(){		//QnA 새글 등록 실행
-    		$("form#insertQnaBtn").submit();
-    	})
-    	
-    	//상품 검색 jQuery
-		$('#searchBtn').click(function(){
-				
-		//검색 input의 값을 저장함
-		let keyword = $('#searchFrm input[name="keyword"]').val();
-				
-		//null값이거나 빈칸일 경우 알림창 띄움, 값이 있을 경우에만 검색
-		if(keyword==null || keyword==' '){
-				alert('검색어를 입력해주세요.');
-			} else {
-				$('#searchFrm').attr('action','../product/searchItems.do?keyword='+keyword);
-				$('#searchFrm').submit();	
-			}//end of if
-		})//end of click
-    })
-    </script>
+	<script src="<%=pjName%>/resources/js/search.js"></script>
 </body>
 </html>

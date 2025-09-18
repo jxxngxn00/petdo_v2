@@ -1887,14 +1887,6 @@ div.single-products {
   overflow: hidden;
 }
 
-.login-form {
-
-}
-
-.signup-form {
-
-}
-
 .login-form h2, .signup-form h2 {
   color: #696763;
   font-family: 'Roboto', sans-serif;
@@ -1942,10 +1934,6 @@ div.single-products {
   display: block;
   font-family: 'Roboto', sans-serif;
   padding: 6px 25px;
-}
-
-.login-form label{
-
 }
 
 
@@ -2102,7 +2090,6 @@ div.single-products {
   overflow: hidden;
   text-align: center;
   width: 35px;
-  float: left;
 }
 
 
@@ -2211,9 +2198,6 @@ div.single-products {
 .user_info > li {
   float: left;
   margin-right: 10px
-}
-
-.user_info > li > span {
 }
 
 .user_info input, select, textarea {
@@ -2460,9 +2444,6 @@ div.single-products {
   text-transform: uppercase;
   font-weight: 500;
   margin-bottom: 17px;
-}
-
-.single-blog-post > a {
 }
 
 .blog-post-area 
@@ -2922,7 +2903,7 @@ html body .replay-box .text-area {
   box-shadow:inherit;
 }
 
-#add-catr-btn{
+#add-cart-btn{
   padding: 0px 12px;
 }
 
@@ -3111,18 +3092,54 @@ color: #31424e;
 
 .addtocart {
 	width: 38%;
-	
-	
 }
 
 .orderbuy {
 	background: #FF9933;
     border: 1px solid #FFFFFF;
     color: #FFFFFF;
-
 }
+
+.selected_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: baseline;
+    margin: 2% auto;
+    gap: 3%;
+    
+    .selected_info {
+    	width: 100%;
+    	
+    	.count { margin-right: 15%; }
+    }
+}	
 	
+.view-reviews {
+	width : 65em;
+	.panel-body { height:fit-content;}
+	.content-div { width:100%; }
+	.content-div.writer { 
+        margin-top: 0.5em;
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 2rem;
+	}
 	
+	.content-div.content {
+		margin-top:1em;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: flex-start;
+	}
+	
+	.review-content-div {
+		width:100%; 
+		#reviewText { min-height:9.5em; overflow:auto; }
+	}
+}
 .carousel-inner .item.active .col-sm-6 {
 	width: 100%!important;
 }

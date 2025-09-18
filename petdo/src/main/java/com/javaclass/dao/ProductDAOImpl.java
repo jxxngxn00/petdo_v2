@@ -27,7 +27,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	//상품전체조회 mybatis 호출
 	public List<ProductVO> selectAllProduct() {
-		System.out.println("===> Mybatis selectAllProduct() 호출222222222222");
+		System.out.println("===> Mybatis selectAllProduct() 호출");
 		return mybatis.selectList("ProductDAO.selectAllProduct");
 	}
 

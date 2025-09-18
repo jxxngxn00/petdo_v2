@@ -63,20 +63,19 @@ WHERE product_number = #{product_number}
 
 <insert id="insertReview" parameterType="ReviewVO">
 INSERT INTO reviews_board 
-(review_seq, review_writer, review_content, review_date, product_number
-<if test="review_name != null">
-    , review_name, review_realname, review_size
-</if>
-)
-VALUES (
-    nextval('review_seq'),
-    #{review_writer},
-    #{review_content},
-    CURRENT_TIMESTAMP,
-    #{product_number}
-<if test="review_name != null">
-    , #{review_name}, #{review_realname}, #{review_size}
-</if>
+	(review_seq, review_writer, review_content, review_date, product_number
+	<if test="review_name != null">
+	    , review_name, review_realname, review_size
+	</if>
+) VALUES (
+	    nextval('review_seq'),
+	    #{review_writer},
+	    #{review_content},
+	    CURRENT_TIMESTAMP,
+	    #{product_number}
+	<if test="review_name != null">
+	    , #{review_name}, #{review_realname}, #{review_size}
+	</if>
 )
 </insert>
 
