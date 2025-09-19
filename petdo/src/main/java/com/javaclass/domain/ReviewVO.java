@@ -18,6 +18,7 @@ public class ReviewVO {
 	String review_writer;		// 작성자
 	String review_content;		// 내용
 	String review_date;			// 작성 일자
+	String review_edit_date;	// 수정 일자
 	
 	// 업로드 이미지
 	String review_name;			// 등록 파일명

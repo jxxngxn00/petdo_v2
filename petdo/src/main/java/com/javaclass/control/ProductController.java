@@ -5,8 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaclass.domain.Criteria;
 import com.javaclass.domain.PagingVO;
@@ -92,7 +96,25 @@ public class ProductController {
 		System.out.println(vo);
 		productService.insertReview(vo);
 		return "redirect:product-details.do?product_number=" + vo.getProduct_number();
-
+	}
+	
+	// 리뷰 수정
+	@PostMapping("/reviews/{param}")
+	@ResponseBody
+	public String reviewUpdate(ReviewVO vo) {
+		System.out.println(vo);
+		// System.out.println(vo);
+		productService.updateReview(vo);
+		return "success";
+	}
+	
+	// 리뷰 삭제
+	@DeleteMapping("/reviews/{review_seq}")
+	@ResponseBody
+	public String reviewDelete(@PathVariable Integer review_seq, ReviewVO vo) {
+		System.out.println("리뷰 삭제 처리");
+		productService.deleteReview(review_seq);
+		return "success";
 	}
 
 	

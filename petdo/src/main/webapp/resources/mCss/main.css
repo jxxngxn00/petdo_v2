@@ -1231,16 +1231,50 @@ h2.title {
   right: 0;
 }
 
-.productInfo h2{
-  margin-top: 30px;
-  margin-bottom: 6px;
-  font-family:"Frutiger LT Pro 75 Black","sans-serif";
-  font-size: 17px;
-  letter-spacing: 0.3px;
-  font-weight: bold;
-  margin: 0 0 7px 0;
-  line-height: 1.4;
-  color: #3a3a3a;
+.productInfo{
+	width: 80%;
+	margin: 1em auto;
+	h2{
+		margin-top: 30px;
+		margin-bottom: 6px;
+		font-family:"Frutiger LT Pro 75 Black","sans-serif";
+		font-size: 17px;
+		letter-spacing: 0.3px;
+		font-weight: bold;
+		margin: 0 0 7px 0;
+		line-height: 1.4;
+		color: #3a3a3a;
+	}
+	
+
+	
+	div.product-image-wrapper{
+		display : grid;
+		margin: 0.5em auto;
+	 justify-items:center; 
+	 align-items:center;  
+	 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	 column-gap : 7em;
+	  width: 100%;
+	  height: auto;
+	}
+	
+	div.single-products {
+	  width: 100%;
+	  margin: 0.5em 1em;;
+	  height: auto;
+	  	p{
+		  margin: 1em auto;
+		  font-family:"Frutiger LT Pro 75 Black","sans-serif";
+		  font-size: 17px;
+		    letter-spacing: 0.3px;
+		    font-weight: bold;
+		    margin: 0 0 7px 0;
+		    line-height: 1.4;
+		  color: #3a3a3a;
+		}
+	}
+ 
 }
 .product-overlay h2{
 	color: #fff;
@@ -1249,24 +1283,7 @@ h2.title {
 	font-weight: 700;
 }
 
-
-.productInfo p{
-  margin-top: 15px;
-  margin-bottom: 6px;
-  font-family:"Frutiger LT Pro 75 Black","sans-serif";
-  font-size: 17px;
-    letter-spacing: 0.3px;
-    font-weight: bold;
-    margin: 0 0 7px 0;
-    line-height: 1.4;
-  color: #3a3a3a;
-}
-
 video { max-width: 50%; display: block; margin: 20px auto; margin-bottom: 45px; float: left; margin-left: 140px; margin-right: 95px;}
-
-.productInfo{
- width: 80%;
-}
 
 .btn-fefault {
 	display: inline-block;
@@ -1404,29 +1421,6 @@ video { max-width: 50%; display: block; margin: 20px auto; margin-bottom: 45px; 
   margin-bottom: 30px;
 }
 
-
-.col-sm-4 .productInfo {
-  margin-left: 90px;
-  
-}
-
-
-.col-sm-4  .productInfo .product-image-wrapper img{
-  width: 90%;
-  height: auto;
-}
-
-div.product-image-wrapper{
-  width: 95%;
-  height: auto;
-
-}
-
-div.single-products {
-  width: 100%;
-  height: auto;
-
-}
 
 
 .category-tab ul {
@@ -3120,12 +3114,30 @@ color: #31424e;
 	.panel-body { height:fit-content;}
 	.content-div { width:100%; }
 	.content-div.writer { 
-        margin-top: 0.5em;
+        margin: 0.5em 0em;
         display: inline-flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: stretch;
-        gap: 2rem;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0em 0.4em;
+        
+        .left-side {
+	        display: inline-flex;
+	        justify-content: flex-start;
+	        align-items: stretch;
+	        gap: 2rem;
+        }
+        
+        .right-side {
+	        display: inline-flex;
+	        justify-content: flex-end;
+	        align-items: center;
+	        gap: 2rem;
+	        
+	        .btn {
+                border-radius: 60px;
+                .glyphicon { padding:0.4em 0em; }
+			}
+        }
 	}
 	
 	.content-div.content {

@@ -80,10 +80,25 @@ INSERT INTO reviews_board
 </insert>
 
 <select id="getReview" parameterType="Integer" resultType="ReviewVO">
-    SELECT review_seq, review_writer, review_content, review_name, review_realname, review_size
+    SELECT review_seq, review_writer, review_content, review_name, 
+    	review_realname, review_size, 
+    	TO_CHAR(review_date,'YYYY-MM-DD') as review_date,
+    	TO_CHAR(review_edit_date,'YYYY-MM-DD') as review_edit_date
     FROM reviews_board
     WHERE product_number = #{product_number}
 </select>
+
+<delete id="deleteReview" parameterType="ReviewVO">
+    DELETE FROM reviews_board
+    WHERE review_seq = #{review_seq}
+</delete>
+
+<update id="updateReview" parameterType="ReviewVO">
+    UPDATE reviews_board
+    SET review_content = #{review_content},
+    review_edit_date = CURRENT_TIMESTAMP
+    WHERE review_seq = #{review_seq}
+</update>
 
 <update id="ordercount" parameterType="ProductVO">
 UPDATE product

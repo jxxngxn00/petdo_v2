@@ -129,17 +129,17 @@
 	</div>
 	<hr/>
 
-	<div class="category-tab">
+	<div class="category-tab col-sm-9 padding-right">
 		<img src="<%=pjName%>/resources/images/home/subbanner5.png" width="100%" height="auto" style="margin-bottom: 35px; margin-top: -12px"  alt="" />
 		<div class="col-sm-9">
 			<div class="tab-content">
 				<!-- 신상품 순으로 나열 -->
 				<div class="tab-pane fade active in" id="tshirt">
 					<h2 class="text-category" style="margin-top: -5px; font-size: 45px">NEW PRODUCT</h2><br/><br/>
-					<div class="productInfo text-center" style="float: left; display: inline-block; width: 100%; margin-left: 50px; margin-right: 50px;">
-						<div class="product-image-wrapper" style="float: left; display: inline-block;">
+					<div class="productInfo text-center">
+						<div class="product-image-wrapper">
 							<c:forEach items ="${newproductList}" var="vo">
-								<div class="single-products" style="float: left; margin-left: 40px; margin-right: 40px; width: 20%">
+								<div class="single-products">
 									<div class="productInfo text-center">
 										<a href="product/product-details.do?product_number=${vo.product_number}"><img src="<%=pjName%>/resources/images/shop/${vo.stored_file_name}" width="207px" height="183px"></a>
 										<h2>${vo.product_name}</h2>

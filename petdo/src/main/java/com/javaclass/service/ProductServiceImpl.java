@@ -18,12 +18,14 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDAOImpl productDAO;
 	/*** 관리자 페이지 ***/
+	@SuppressWarnings("rawtypes")
 	//상품 배송 비율
 	@Override
 	public List<HashMap> getRatio() {
 		return productDAO.getRatio();
 	}
 	//상품 재고상태 비율
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List<HashMap> getItemRatio() {
 		return productDAO.getItemRatio();
@@ -81,6 +83,16 @@ public class ProductServiceImpl implements ProductService {
 	public List<ReviewVO> getReview(Integer product_number) {
 		return productDAO.getReview(product_number);
 	}
+	// 리뷰 수정
+	public void updateReview(ReviewVO vo) {
+		productDAO.updateReview(vo);
+	}
+	// 리뷰 삭제
+	public void deleteReview(Integer review_seq) {
+		productDAO.deleteReview(review_seq);
+	}
+	
+	
 	// 조회수+1  
 	public void hitsplus(Integer product_number) {
 		productDAO.hitsplus(product_number);

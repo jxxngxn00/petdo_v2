@@ -8,14 +8,14 @@
 		$(".about_product").append(str);
 	});*/
 	
-//리뷰 버튼을 눌렀을때 
+//리뷰 sub GNB 눌렀을때 
 $("#review").click(function() {
 	//스크롤 버튼 활성화
 	var scrollPosition = $(".reviews").offset().top;
 	$("html").animate({scrollTop: scrollPosition}, 500); 
 });
 
-//상품 상세 버튼을 눌렀을때
+//상품 상세 sub GNB 눌렀을때
 $("#about").click(function() {
 	//스크롤 버튼 활성화
 	var scrollPosition = $(".about_product").offset().top;
@@ -73,7 +73,6 @@ function displayTotalPrice() {
     let total = 0;
     $(".selected_option .selected_info").each(function() {
         const price = Number($(this).find(".price").text());
-        // const quantity = Number($(this).find(".count").text());
         if (!isNaN(price)) {
             total += price;
         }
@@ -95,12 +94,66 @@ function displayTotalPrice() {
 	}
 }
 
-function deleteOption() {
-    $(document).on("click", ".delete_option_btn", function() {
-        $(this).closest(".selected_content").remove();
-        displayTotalPrice();
-        /*$(".select_count").val(1); // 수량 초기화*/
-    });
+function deleteOption(el) {
+    $(el).closest(".selected_content").remove();
+    displayTotalPrice();
+}
+
+function editReview(el){
+
+	const content = $.trim($(el).parents("div.panel-body").find(".review-content").text()); 	//p 태그의 값 저장
+	$(el).parents("div.panel-body").find(".review-content").remove(); 				//li의 parent(ul)의 parent(div)의 자식(p태그) 삭제
+		
+	const input = $('<textarea/>');
+	input.attr('class','review-content');
+	input.attr('id','edit-review-content');
+	input.val(content);	
+	$(el).parents("div.panel-body").find(".review-content-div").append(input);
+	$(el).attr('class','btn btn-default edit-review2');
+	
+	$(".edit-review2").on("click", function() {
+		
+		const rno = $(this).parents("div.panel-body").find('input[name="review_seq"]').val();
+		const param = {
+			review_seq : rno,
+			review_content : $("#edit-review-content").val()
+		}
+	    $.ajax({
+	        type: 'post',
+	        url: '../product/reviews/' + rno,
+			data: param,
+	        success: function(result) {
+	            alert('리뷰가 수정되었습니다.');
+				$(this).attr('class','edit-review');
+	            location.reload();
+	        },
+	        error: function(err) {
+	            alert('에러');
+				console.log(err);
+	        }
+	    });
+	})
+}
+
+function deleteReview(el){
+	if(confirm("리뷰를 삭제하시겠습니까?")) {
+		const rno = $(el).parents(".panel-body").find('input[name="review_seq"]').val();
+		// console.log(rno);
+        $.ajax({
+            type: 'delete',
+            url: '../product/reviews/' + rno,
+            success: function() {
+                alert('리뷰가 삭제되었습니다.');
+                location.reload();
+            },
+            error: function(err) {
+                alert('에러');
+				console.log(err);
+            }
+        });
+    } else {
+        return;
+	}
 }
 
 $(document).ready(function() {
@@ -116,16 +169,23 @@ $(document).ready(function() {
         $("#submit").hide();
     }
 	
-	// 갯수 입력(blur) 및 셀렉트박스 변경 시 함수 호출
+	// 셀렉트박스 변경 시 함수 호출
 	$("#select_count").on('change', function() {
 		if ($("#select_count").val() > 0) {
 			updatePurchaseInfo();
 		}
 	});
 	
-	$(document).on("click", ".delete_option", deleteOption);
+	$(".selected_option").on("click", ".delete_option", deleteOption());
 	
 	$("#submit").click(function(){
 		$("cart-form").submit();
 	});
+	
+	$(".delete-btn").on("click", ".btn", function(){deleteReview(this)});
+    
+    $(".edit-btn").on("click", ".btn", function(){editReview(this)});
+    
+    // 초기 결제 금액 표시
+    displayTotalPrice();
 });

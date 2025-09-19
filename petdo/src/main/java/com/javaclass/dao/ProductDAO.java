@@ -39,6 +39,10 @@ public interface ProductDAO {
 	public void insertReview(ReviewVO vo);
 	// 리뷰 조회
 	public List<ReviewVO> getReview(Integer product_number);
+	// 리뷰 삭제
+	public void deleteReview(Integer review_seq);
+	// 리뷰 수정
+	public void updateReview(ReviewVO vo);
 	// 조회수 증가
 	public void hitsplus(Integer product_number);
 	// 베스트 상품 출력

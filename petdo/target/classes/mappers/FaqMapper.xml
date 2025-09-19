@@ -17,7 +17,7 @@
 	</update>
 	<delete id="deleteFaqBoard">DELETE FROM faq_board WHERE faq_seq=#{faq_seq}</delete>
 	<select id="selectFaqBoard" parameterType="com.javaclass.domain.FaqVO" resultType="com.javaclass.domain.FaqVO">
-		SELECT faq_seq,faq_title,faq_writer,faq_name,faq_realname,faq_fsize,faq_mainName,faq_mainRealName,faq_mainFsize,faq_date,faq_tag1,faq_tag2,faq_tag3 FROM faq_board WHERE faq_seq=#{faq_seq}
+		SELECT faq_seq,faq_title,faq_writer,faq_name,faq_realname,faq_fsize,faq_mainName,faq_mainRealName,faq_mainFsize,TO_CHAR(faq_date, 'YYYY-MM-DD') as faq_date,faq_tag1,faq_tag2,faq_tag3 FROM faq_board WHERE faq_seq=#{faq_seq}
 	</select>
 	<select id="selectAllFaq" resultType="com.javaclass.domain.FaqVO">
 		SELECT faq_seq,faq_title,faq_writer,faq_name,faq_realname,faq_fsize,faq_mainName,faq_mainRealName,faq_mainFsize,faq_date,faq_tag1,faq_tag2,faq_tag3 FROM faq_board ORDER BY faq_seq DESC

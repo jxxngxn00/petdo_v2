@@ -122,30 +122,30 @@ public class BlogController {
 	/****** FAQ ******/
 	
 	// 사용자 FAQ 페이지 이동
-		@RequestMapping("/faq.do")
-		public String faq(FaqVO faqvo, Model m) {	
-			m.addAttribute("faqList", faqService.getFaqBoardList(faqvo));
-			return "blog/Faq";
-		}
-		
-		// 등록한 FAQ 유저페이지 FAQ 상세보기 페이지 이동
-		@RequestMapping(value="/faqDetail.do", method=RequestMethod.GET)
-		public String qnaDetail(FaqVO faqvo, Model m) {
-			FaqVO result = faqService.selectFaqBoard(faqvo);
-			//System.out.println("result : "+result.getFaq_content());
-			m.addAttribute("faq", result);
-			return "blog/FaqDetail";
-		}
-		
+	@RequestMapping("/faq.do")
+	public String faq(FaqVO faqvo, Model m) {	
+		m.addAttribute("faqList", faqService.getFaqBoardList(faqvo));
+		return "blog/Faq";
+	}
+	
+	// 등록한 FAQ 유저페이지 FAQ 상세보기 페이지 이동
+	@RequestMapping(value="/faqDetail.do", method=RequestMethod.GET)
+	public String qnaDetail(FaqVO faqvo, Model m) {
+		FaqVO result = faqService.selectFaqBoard(faqvo);
+		//System.out.println("result : "+result.getFaq_content());
+		m.addAttribute("faq", result);
+		return "blog/FaqDetail";
+	}
+	
 
-		// 글 수정
-		@RequestMapping("/updateFaq.do")
-		public String updateFaqBoard(FaqVO faqvo, Model m) {	
-			 System.out.println("글수정");
-			 faqService.updateFaqBoard(faqvo);
-			 m.addAttribute("faqList", faqService.getFaqBoardList(faqvo));
-			 return "blog/FaqDetail";
-		}
+	// 글 수정
+	@RequestMapping("/updateFaq.do")
+	public String updateFaqBoard(FaqVO faqvo, Model m) {	
+		 System.out.println("글수정");
+		 faqService.updateFaqBoard(faqvo);
+		 m.addAttribute("faqList", faqService.getFaqBoardList(faqvo));
+		 return "blog/FaqDetail";
+	}
 		
 	
 	

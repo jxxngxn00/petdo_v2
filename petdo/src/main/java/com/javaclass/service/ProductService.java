@@ -30,6 +30,10 @@ public interface ProductService {
 	public void insertReview(ReviewVO vo);
 	// 리뷰 조회
 	List<ReviewVO> getReview(Integer product_number);
+	// 리뷰 수정
+	public void updateReview(ReviewVO vo);
+	// 리뷰 삭제
+	public void deleteReview(Integer review_seq);
 	// 조회수
 	public void hitsplus(Integer product_number);
 	
@@ -48,8 +52,10 @@ public interface ProductService {
 	//상품전체 조회
 	List<ProductVO> selectAllProduct();
 	//관리자--상품상태비율
+	@SuppressWarnings("rawtypes")
 	List<HashMap> getRatio();
 	//관리자--상품재고 비율
+	@SuppressWarnings("rawtypes")
 	List<HashMap> getItemRatio();
 	
 	/*** 판매완료시 재고수량 조절 ***/

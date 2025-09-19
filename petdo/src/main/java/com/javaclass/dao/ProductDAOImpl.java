@@ -110,6 +110,18 @@ public class ProductDAOImpl implements ProductDAO {
 		System.out.println("====> Mybatis로 getReview 기능 처리");
 		return mybatis.selectList("ProductDAO.getReview",product_number);
 	}
+	
+	// 리뷰 삭제
+	public void deleteReview(Integer review_seq) {
+		System.out.println("====> Mybatis로 deleteReview 기능 처리");
+		mybatis.delete("ProductDAO.deleteReview",review_seq);;
+	}
+	
+	// 리뷰 수정
+	public void updateReview(ReviewVO vo) {
+		System.out.println("====> Mybatis로 updateReview 기능 처리");
+		mybatis.update("ProductDAO.updateReview",vo);
+	}
 
 	// 조회수 증가
 	public void hitsplus(Integer product_number) {

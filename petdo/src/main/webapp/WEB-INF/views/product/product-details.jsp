@@ -152,18 +152,52 @@
 					        <div class="panel panel-default">
 							  <div class="panel-body">
 								<div class="content-div writer">
-									<input name="product_number" type="hidden"
-										value="${vo.product_number}" />
-									<label class="user-name-label">
-										작성자
-									</label> 
-									<span class="user-name" style="display: inline-block;">${vo.review_writer}</span>
+									<div class="left-side">
+										<input name="product_number" class="product_number" type="hidden"
+											value="${vo.product_number}" />
+										<input name="review_seq" class="review_seq" type="hidden"
+											value="${vo.review_seq}" />
+										<label class="user-name">
+											${vo.review_writer}
+										</label>
+										<c:choose>
+											<c:when test="${empty vo.review_edit_date}">
+												<span class="review-date" style="display: inline-block;">${vo.review_date}</span>
+											</c:when>
+											<c:otherwise>
+												<span class="review-date" style="display: inline-block;">${vo.review_edit_date} (수정됨✍️)</span>
+											</c:otherwise>
+										</c:choose>
+									</div>
+									<c:choose>
+										<c:when test="${vo.review_writer eq sessionScope.login }">
+											<div class="btn-div right-side">
+												<span class="edit-btn">
+													<button type="button" class="btn btn-default">
+														<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+													</button>	
+												</span>
+												<span class="delete-btn">
+													<button type="button" class="btn btn-danger">
+														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+													</button>	
+												</span>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="btn-div right-side" style="width:1px;">
+												
+											</div>
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div class="content-div content">
 									<div class="review-content-div">
-										<div style="word-break: break-all; text-align: left; padding: 10px; border: 1px solid #ddd; border-radius: 4px; background: #fafafa;">${vo.review_content}</div>
+										<div class="review-content" style="word-break: break-all; text-align: left; padding: 10px; border: 1px solid #ddd; border-radius: 4px; background: #fafafa;">
+											${vo.review_content}
+										</div>
 									</div>
-									<div style="width:25%; margin-bottom: 30px;">
+									<div class="img-div" style="width:25%;">
 										<%-- <img
 											src="<%=pjName %>/resources/images/review/${vo.review_realname}"
 											style="float: left; height:214px; width:auto;"> --%>
@@ -171,7 +205,6 @@
 								</div>
 							  </div>
 							</div>
-							
 					</c:forEach>
 				</div>
 			</div>
@@ -193,11 +226,9 @@
 									<div class="form-group">
 										<input name="product_number" type="hidden"
 											value="${getProduct.product_number}" /> 
-										<label for="review_writer" style="float: left; margin-top: 5px;">
-											이름 	<span class="require"></span>
-										</label> <input type="text" class="form-control" name="review_writer"
-											value=<%=session.getAttribute("login")%> readonly
-											style="width: 14%; margin-left: 50px;">
+										<input type="text" class="form-control" name="review_writer"
+											value=<%=session.getAttribute("login")%> type="hidden"
+											style="display:none;">
 									</div>
 									<div>
 										<input type="file" name="file" />
