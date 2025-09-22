@@ -107,3 +107,23 @@ label {
     width: 50%;
     margin: auto;
   }
+  
+  
+  /* join.jsp */
+  form.user {
+  	.inputId {
+	    display: flex;
+	    column-gap: 1.3rem;
+	    width: 100%;
+	    align-items: center;
+	    
+	    input {
+	      	width: fit-content;
+	    }
+	    
+	    span {
+	    	white-space : nowrap;
+	    	width : fit-content;
+	    }
+  	}
+  }

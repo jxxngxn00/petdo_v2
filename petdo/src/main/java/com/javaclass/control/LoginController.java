@@ -113,7 +113,7 @@ public class LoginController {
 	}
 
 	
-	 // 유저 로그인/로그아웃 기록 저장하는 텍스트 파일 추가	
+	// 유저 로그인/로그아웃 기록 저장하는 텍스트 파일 추가	
 	public void logCustomer(String strToWrite, HttpSession session) {
 	      try {
 	         File myObj = new File("fileLog.txt");

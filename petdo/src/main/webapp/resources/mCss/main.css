@@ -3157,3 +3157,24 @@ color: #31424e;
 }
 
 
+/*
+my page CSS
+*/
+#infoFrm {
+	width: 90%;
+	margin: 1% auto;
+	 .form-group.input-group { 
+	 	display: flex;
+	 	justify-content: flex-start; 
+	 	align-items: flex-start;
+		
+		.infoFrmInput { 
+			width: 20%;
+			white-space: nowrap;
+			font-weight : 700; 
+			font-size : 1.2em;
+		}
+		input { width : 20em; }	 
+		.inputBtn { white-space: nowrap;}
+ 	}
+}

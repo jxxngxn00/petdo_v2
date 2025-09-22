@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaclass.domain.ExchangeVO;
 import com.javaclass.domain.MemberVO;
@@ -115,12 +117,40 @@ public class MyPageController {
 	public String delete(MemberVO vo, HttpSession session) {
 		System.out.println(">>>>>>delete : "+vo);
 		memberService.deleteInfo(vo);
-		String id = (String) session.getAttribute("id");
-		String pwd = (String) session.getAttribute("pwd");
+//		String id = (String) session.getAttribute("id");
+//		String pwd = (String) session.getAttribute("pwd");
 		//session.removeAttribute(id);
 		//session.removeAttribute(pwd);
 		session.invalidate();
 		return "redirect:/loginOpen.do";
 	}
+	
+	// 비밀번호 확인
+	@RequestMapping(value="/checkPwd.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public boolean checkPwd(@RequestBody MemberVO vo) {
+		//System.out.println("checkPwd vo : "+ vo);
+		MemberVO result = memberService.idCheck_Login(vo);
+		return (result != null) ? true : false;
+	}
+	
+	// 비밀번호 유효성 검사
+	@RequestMapping(value="/validatePwd.do", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public boolean validatePwd(@RequestBody MemberVO vo) {
+		String pwd = vo.getUser_pwd();
+		if (pwd == null) return false;
+		// 길이 체크
+		if (pwd.length() < 8 || pwd.length() > 20) return false;
+		// 영문, 숫자, 특수문자 각각 1개 이상 포함 체크
+		boolean hasEng = pwd.matches(".*[a-zA-Z].*");
+		boolean hasNum = pwd.matches(".*[0-9].*");
+		boolean hasSpe = pwd.matches(".*[!@#$%^&*(),.?\":{}|<>`~'\\/\\[\\];].*");
+		if (hasEng && hasNum && hasSpe) {
+			return true;
+		} else {
+			return false;
+		}
+	}	
 	
 }

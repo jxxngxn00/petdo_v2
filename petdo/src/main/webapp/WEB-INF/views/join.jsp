@@ -4,23 +4,22 @@
 <html lang="en" style="background-color:#FDDCDF">
 
 <head>
-
+    <% String pjName="/petdo"; %>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Petdo - Login</title>
-    <% String pjName="/petdo"; %>
-    <!-- Custom fonts for this template-->
+    <title>Petdo - Sign up</title>
     <link href="<%=pjName %>/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
-    <!-- Custom styles for this template-->
     <link href="<%=pjName %>/resources/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<%=pjName %>/resources/css/custom.css" rel="stylesheet">
+    <link rel="shortcut icon"
+		href="<%=pjName%>/resources/images/ico/favicon.ico">
 
 </head>
 
@@ -41,16 +40,16 @@
                             <!-- 회원가입 폼 -->
                             <form class="user" action="userInsert.do" method="post">
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="아이디" name="user_id">
+                                    <div class="col-sm-6 mb-3 mb-sm-0 inputId">
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName" required
+                                            placeholder="아이디" name="user_id" />
+                                        <span><button type="button" class="btn btn-primary idCheckBtn">중복확인</button></span>
                                         <span id="idCheckResult"></span>
                                     </div>
                                   
                                     <div class="col-sm-8 mt-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="이름" name="user_name">
-                                            
+                                            placeholder="이름" name="user_name" required>
                                     </div>
                                     
                                 </div>
@@ -61,16 +60,16 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="비밀번호" name="user_pwd">
+                                            id="exampleInputPassword" placeholder="비밀번호" name="user_pwd" required>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="비밀번호 확인">
+                                            id="exampleRepeatPassword" placeholder="비밀번호 확인" required>
                                     </div>
                                  </div>
                                 <div class="form-group row">
                                    <div class="col-sm-6 mb-3 mb-sm-0" class="form-control form-control-user">
-                                    <input type="email" class="form-control form-control-user" id="examplecellphone"
+                                    <input type="tel" class="form-control form-control-user" id="examplecellphone"
                                         placeholder="휴대전화" name="user_phone">
                               		</div>
                               		</div>
@@ -78,11 +77,8 @@
                                     <input type="text" class="form-control form-control-user" id="exampleaddress"
                                         placeholder="우편번호" name="user_address1">
                                 </div>
-                            
-                                    
-                                    
                                 
-                                <button class="btn btn-primary btn-user btn-block" id="joinBtn">
+                                <button type="submit" class="btn btn-primary btn-user btn-block" id="joinBtn" disabled>
                                     계정 생성하기
                                 </button>
                               <hr>
@@ -111,41 +107,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<%=pjName %>/resources/js/sb-admin-2.min.js"></script>
-	
-	<!-- custom scripts for login -->
-	<script type="text/javascript">
-		$(function(){
-			$("button#joinBtn").click(function(){ //버튼 클릭시 폼 전송 : 회원 등록
-				$("form.user").submit();
-			});
-			
-			//아이디 중복체크 -> 추후에는 [아이디 중복확인] 버튼 클릭으로 변경
-			$('input[name="user_id"]').keyup(function(){
-		        
-				
-		        $.ajax({
-		        	url : 'idCheck.do',
-		        	data : { user_id : $('input[name="user_id"]').val() },
-		        	// dataType : '주로 json/xml',
-		        	contentType : 'application/x-www-form-urlencoded;charset=utf-8',
-		        	success : checkId,
-		        	error : function(err){
-		        		alert('error');
-		        		console.log(err);
-		        	}
-		        });
-		        
-		        function checkId(result){
-			        $('#idCheckResult').text(result);
-		        	if(result==='중복된 아이디가 있습니다.'){
-		        		$('#joinBtn').hide();
-		        	} else { $('#joinBtn').show(); }
-		        	
-		    	} // end fo checkId()   
-		    	
-			}) // end of keyup
-		})
-	</script>
+	<script src="<%=pjName %>/resources/js/login-custom.js"></script>
+
 </body>
 
 </html>

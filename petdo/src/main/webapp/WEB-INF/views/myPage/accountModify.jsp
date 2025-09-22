@@ -29,13 +29,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-	
 
-<!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-<link rel="shortcut icon" href="images/ico/favicon.ico">
+<link rel="shortcut icon" href="<%=pjName%>/resources/images/ico/favicon.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
 	href="images/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
@@ -72,55 +67,64 @@
 				<div class="contact-form">
 					<hr />
 					<form id="infoFrm" method="post"> <!-- action 써주기 -->
-						<div class="form-group col-md-12">
-							<p id="customerid"
+						<div class="form-group col-md-12 input-group">
+							<p class="infoFrmInput customerid"
 								style="float: left; margin-top: 6px; font-family: 'Noto Sans KR', sans-serif;">아이디</p>
 							<input type="text" readonly name="user_id" class="form-control"  value="${userInfo.user_id }"
-								required="required" style="width: 40%; margin-left: 115px;">
+								required="required" >
 						</div>
-						<div class="form-group col-md-12">
-							<p id="customerEmail"
+						<div class="form-group col-md-12 input-group">
+							<p class="infoFrmInput customerName"
 								style="float: left; margin-top: 6px; font-family: 'Noto Sans KR', sans-serif;">이름</p>
 							<input type="text" name="user_name" class="form-control"  value="${userInfo.user_name }"
-								required="required" style="width: 40%; margin-left: 115px;">
+								required="required" >
 						</div>
-						<div class="form-group col-md-12">
-							<p id="customerid"
-								style="float: left; margin-top: 6px; font-family: 'Noto Sans KR', sans-serif;">비밀번호</p>
-							<input type="password" name="user_pwd" class="form-control"  value="${userInfo.user_pwd }"
-								required="required" style="width: 40%; margin-left: 115px;">
+						<div class="form-group col-md-12 input-group">
+							<p class="infoFrmInput currentCustomerPW"
+								style="float: left; margin-top: 6px; font-family: 'Noto Sans KR', sans-serif;">현재 비밀번호</p>
+							<span class="inputBtn">
+								<input type="password" name="user_pwd_curr" class="form-control"
+									required="required" >
+								<button class="btn btn-default checkPwd">비밀번호 확인</button>
+							</span>
 						</div>
-						<div class="form-group col-md-12">
-							<p id="customerEmail"
+						<div class="form-group col-md-12 input-group">
+							<p class="infoFrmInput customerPW"
+								style="float: left; margin-top: 6px; font-family: 'Noto Sans KR', sans-serif;">새 비밀번호</p>
+							<div class="inputBtn">
+								<input type="password" name="user_pwd" class="form-control"
+								required="required" >
+								<div class="validatePwdResult"></div>
+							</div>
+						</div>
+						<div class="form-group col-md-12 input-group">
+							<p class="infoFrmInput customerEmail"
 								style="float: left; font-family: 'Noto Sans KR', sans-serif; margin-top: 6px">E-Mail</p>
 							<input type="text" name="user_email" class="form-control"  value="${userInfo.user_email }"
-								required="required" style="width: 83%; margin-left: 115px;">
+								required="required">
 						</div>
-						<div class="form-group col-md-12">
-							<p id="customerEmail"
+						<div class="form-group col-md-12 input-group">
+							<p class="infoFrmInput customerPhone"
 								style="float: left; font-family: 'Noto Sans KR', sans-serif; margin-top: 6px;">전화</p>
-							<input type="text" name="user_phone" class="form-control"  value="${userInfo.user_phone }"
-								required="required" style="width: 40%; margin-left: 115px;">
+							<input type="tel" name="user_phone" class="form-control"  value="${userInfo.user_phone }"
+								required="required" >
 						</div>
-						<div class="form-group col-md-12" style="display: f;">
-							<p id="customerEmail"
+						<div class="form-group col-md-12 input-group">
+							<p class="infoFrmInput customerAddress"
 								style="float: left; font-family: 'Noto Sans KR', sans-serif; margin-top: 6px;">주소</p>
-							<div>
-								<input type="text" class="form-control" name="user_address1"
-									required="required"  value="${userInfo.user_address1 }"
-									style="width: 83%; margin-left: 115px; margin-top: 5px;">
-							</div>
-							<hr />
+							<input type="text" class="form-control" name="user_address1"
+								required="required"  value="${userInfo.user_address1 }">
 						</div>
+						<hr />
 
 						<div class="form-group col-md-12">
 							<button name="submit" id="delete"
 								class="btn btn-delete pull-right"
-								style="margin-right: 12px; font-family: 'Noto Sans KR', sans-serif">회원탈퇴</button>
-							<button name="submit" id="modify"
+								style="margin-right: 12px; font-family: 'Noto Sans KR', sans-serif" disabled>회원탈퇴</button>
+							<button name="submit" id="modify" disabled
 								class="btn btn-modify pull-right"
 								style="margin-left: 12px; margin-bottom: 60px; font-family: 'Noto Sans KR', sans-serif">
-								수정</button>
+								회원수정</button>
 						</div>
 
 					</form>
@@ -169,40 +173,21 @@
 	</div>
 	<!--/#contact-page-->
 
-<!-- logout Modal -->
-	<div class="modal fade" id="logoutModalCenter" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h2 class="modal-title" id="exampleModalLabel">Petdo - 로그아웃</h2>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body" style="padding: 50px;">로그아웃 하시겠습니까?</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal" style="border-radius: 10px;">취소</button>
-					<a class="btn btn-primary" href="../logOut.do" style="border-radius: 10px; margin-top: 0px">로그아웃</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!-- logout Modal -->
+    <jsp:include page="/WEB-INF/views/common/logoutModal.jsp" />	
 	<!-- /logout Modal -->
 
 	<!-- delete User Modal -->
-        <section class="modal modal-section type-confirm">
-            <div class="enroll_box">
-                <p class="menu_msg"></p>
-            </div>
-            <div class="enroll_btn">
-                <button class="btn pink_btn btn_ok">확인</button>
-                <button class="btn gray_btn modal_close">취소</button>
-            </div>
-        </section>
-        <!-- delete User Modal -->
+    <section class="modal modal-section type-confirm">
+        <div class="enroll_box">
+            <p class="menu_msg"></p>
+        </div>
+        <div class="enroll_btn">
+            <button class="btn pink_btn btn_ok">확인</button>
+            <button class="btn gray_btn modal_close">취소</button>
+        </div>
+    </section>
+    <!-- delete User Modal -->
 
 	<footer id="footer">
         <jsp:include page="/WEB-INF/views/common/footer.jsp" />
@@ -216,23 +201,6 @@
 	<script src="<%=pjName%>/resources/js/jquery.prettyPhoto.js"></script>
 	<script src="<%=pjName%>/resources/js/main.js"></script>
 	<script src="<%=pjName%>/resources/js/myPageCustom.js" type="text/javascript"></script>
-	    <script type="text/javascript">
-    $(function(){
-    	//상품 검색 jQuery
-		$('#searchBtn').click(function(){
-				
-		//검색 input의 값을 저장함
-		let keyword = $('#searchFrm input[name="keyword"]').val();
-				
-		//null값이거나 빈칸일 경우 알림창 띄움, 값이 있을 경우에만 검색
-		if(keyword==null || keyword==' '){
-				alert('검색어를 입력해주세요.');
-			} else {
-				$('#searchFrm').attr('action','../product/searchItems.do?keyword='+keyword);
-				$('#searchFrm').submit();	
-			}//end of if
-		})//end of click
-    })
-    </script>
+	<script src="<%=pjName %>/resources/js/search.js" type="text/javascript"></script>
 </body>
 </html>
