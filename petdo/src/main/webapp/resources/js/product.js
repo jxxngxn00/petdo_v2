@@ -8,20 +8,6 @@
 		$(".about_product").append(str);
 	});*/
 	
-//리뷰 sub GNB 눌렀을때 
-$("#review").click(function() {
-	//스크롤 버튼 활성화
-	var scrollPosition = $(".reviews").offset().top;
-	$("html").animate({scrollTop: scrollPosition}, 500); 
-});
-
-//상품 상세 sub GNB 눌렀을때
-$("#about").click(function() {
-	//스크롤 버튼 활성화
-	var scrollPosition = $(".about_product").offset().top;
-	$("html").animate({scrollTop: scrollPosition}, 500); 
-});
-	
 // 구매 관련 정보 갱신 및 품절 체크
 function updatePurchaseInfo() {
     // 선택한 수량, 가격, 재고 가져오기
@@ -95,6 +81,7 @@ function displayTotalPrice() {
 }
 
 function deleteOption(el) {
+	//alert("clicked!!");
     $(el).closest(".selected_content").remove();
     displayTotalPrice();
 }
@@ -156,7 +143,21 @@ function deleteReview(el){
 	}
 }
 
-$(document).ready(function() {
+$(document).ready(function() {	
+	//리뷰 sub GNB 눌렀을때 
+	$("#review").click(function() {
+		//스크롤 버튼 활성화
+		var scrollPosition = $(".reviews").offset().top;
+		$("html").animate({scrollTop: scrollPosition}, 500); 
+	});
+	
+	//상품 상세 sub GNB 눌렀을때
+	$("#about").click(function() {
+		//스크롤 버튼 활성화
+		var scrollPosition = $(".about_product").offset().top;
+		$("html").animate({scrollTop: scrollPosition}, 500); 
+	});
+	
     const stock = Number($("#product_stock").val());
     const count = Number($("#select_count").val() || $("select[name=product_count]").val());
 	$(".orderbtn").hide();
@@ -176,7 +177,9 @@ $(document).ready(function() {
 		}
 	});
 	
-	$(".selected_option").on("click", ".delete_option", deleteOption());
+	$(".selected_option").on("click", ".delete_option", function() {
+	    deleteOption(this);
+	});
 	
 	$("#submit").click(function(){
 		$("cart-form").submit();

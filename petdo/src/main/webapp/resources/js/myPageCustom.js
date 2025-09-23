@@ -113,19 +113,21 @@ $(function(){
 	//수정버튼 클릭시
 	$('#modify').click(function(e){
 		e.preventDefault();
-		frm.attr('action','modify.do');		
+		frm.attr('action','/modify.do');		
 		const res=confirm("회원 정보를 수정합니다.");
 		if(res) {
 			frm.submit();﻿
+//		    alert(frm.attr('action'));
 		}
 	});
 	
 	//탈퇴버튼 클릭시
 	$('#delete').click(function(e){
 		e.preventDefault();
-		frm.attr('action','delete.do');
+		frm.attr('action','/delete.do');
 		const res=confirm("petdo를 탈퇴하시겠습니까?");
 		if(res) {
+			alert("회원 정보가 수정되었습니다.");
 			frm.submit();﻿
 		}
 	});//end of click

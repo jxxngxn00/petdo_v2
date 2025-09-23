@@ -107,7 +107,7 @@ public class MyPageController {
 	// 회원 정보 수정
 	@RequestMapping("/modify.do")
 	public String modify(MemberVO vo) {
-		//System.out.println(">>>>>>update : "+vo);
+		System.out.println(">>>>>> 회원 정보 수정 : "+vo);
 		memberService.updateInfo(vo);
 		return "redirect:account.do?user_id="+vo.getUser_id();
 	}
@@ -115,7 +115,7 @@ public class MyPageController {
 	// 회원 정보 삭제
 	@RequestMapping("/delete.do")
 	public String delete(MemberVO vo, HttpSession session) {
-		System.out.println(">>>>>>delete : "+vo);
+		System.out.println(">>>>>> 회원 정보 삭제 : "+vo);
 		memberService.deleteInfo(vo);
 //		String id = (String) session.getAttribute("id");
 //		String pwd = (String) session.getAttribute("pwd");

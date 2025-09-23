@@ -119,10 +119,10 @@
 
 						<div class="form-group col-md-12">
 							<button name="submit" id="delete"
-								class="btn btn-delete pull-right"
+								class="btn btn-delete pull-right" type="submit"
 								style="margin-right: 12px; font-family: 'Noto Sans KR', sans-serif" disabled>회원탈퇴</button>
 							<button name="submit" id="modify" disabled
-								class="btn btn-modify pull-right"
+								class="btn btn-modify pull-right" type="submit"
 								style="margin-left: 12px; margin-bottom: 60px; font-family: 'Noto Sans KR', sans-serif">
 								회원수정</button>
 						</div>
